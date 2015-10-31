@@ -8,7 +8,6 @@ namespace hhpack\typechecker
     type Messages = Traversable<Message>;
     type ImmutableMessages = ImmVector<Message>;
     type Path = string;
-//    type ScriptName = string;
     type LineNumber = int;
     type ColumnNumber = int;
 }
