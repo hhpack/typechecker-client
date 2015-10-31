@@ -19,14 +19,20 @@ final class TypeCheckerClient implements ClientSpecification
 
     const PROGRAM = 'hh_client';
 
-    public async function restart(?string $cwd = (string) getcwd()) : Awaitable<void>
+    public function __construct(
+        private string $cwd = (string) getcwd()
+    )
     {
-        await Process::exec( $this->command('restart') );
     }
 
-    public async function check(?string $cwd = (string) getcwd()) : Awaitable<Result>
+    public async function restart() : Awaitable<void>
     {
-        $result = await Process::exec( $this->command('check', [ '--json' ]));
+        await Process::exec( $this->command('restart'), $this->cwd );
+    }
+
+    public async function check() : Awaitable<Result>
+    {
+        $result = await Process::exec( $this->command('check', [ '--json' ]), $this->cwd);
         return Result::fromString((string) $result->getStderr());
     }
 

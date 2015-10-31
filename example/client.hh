@@ -8,9 +8,9 @@ use hhpack\typechecker\TypeCheckerClient;
 
 async function main(string $cwd) : Awaitable<void>
 {
-    $client = new TypeCheckerClient();
-    await $client->restart($cwd);
-    $result = await $client->check($cwd);
+    $client = new TypeCheckerClient($cwd);
+    await $client->restart();
+    $result = await $client->check();
 
     if ($result->isPassed()) {
         echo 'Type check Passed', PHP_EOL;
