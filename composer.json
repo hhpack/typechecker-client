@@ -1,7 +1,7 @@
 {
   "name": "hhpack/typechecker-client",
   "keywords": [ "typechecker", "client", "hack", "hhvm" ],
-  "description": "Type checker client for Hack",
+  "description": "Type checker client library for Hack",
   "authors": [
     {
       "name": "Noritaka Horio",
