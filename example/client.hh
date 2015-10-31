@@ -4,7 +4,7 @@ namespace hhpack\typesafety;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use hhpack\typesafety\TypeCheckerClient;
+use hhpack\typechecker\TypeCheckerClient;
 
 async function main(string $cwd) : Awaitable<void>
 {

@@ -17,15 +17,26 @@ use hhpack\process\Process;
 final class TypeCheckerClient implements ClientSpecification
 {
 
+    const PROGRAM = 'hh_client';
+
     public async function restart(?string $cwd = (string) getcwd()) : Awaitable<void>
     {
-        await Process::exec('hh_client restart');
+        await Process::exec( $this->command('restart') );
     }
 
     public async function check(?string $cwd = (string) getcwd()) : Awaitable<Result>
     {
-        $result = await Process::exec('hh_client check --json');
+        $result = await Process::exec( $this->command('check', [ '--json' ]));
         return Result::fromString((string) $result->getStderr());
+    }
+
+    private function command(string $command, Traversable<string> $args = []) : string
+    {
+        $builder = Set {};
+        $builder->add('%s %s %s');
+        $builder->addAll([ static::PROGRAM, $command, implode(' ', $args) ]);
+
+        return call_user_func_array('sprintf', $builder->toValuesArray());
     }
 
 }
