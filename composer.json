@@ -1,0 +1,33 @@
+{
+  "name": "hhpack/typechecker-client",
+  "keywords": [ "typechecker", "client", "hack", "hhvm" ],
+  "description": "Type checker client for Hack",
+  "authors": [
+    {
+      "name": "Noritaka Horio",
+      "email": "holy.shared.design@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "hhvm": ">=3.6",
+    "hhpack/process": "~0.1.0"
+  },
+  "require-dev": {
+    "expect/peridot-expect-plugin": "~3.0",
+    "peridot-php/peridot": "~1.16",
+    "peridot-php/peridot-dot-reporter": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "hhpack\\typechecker\\": "src/"
+    },
+    "files": [
+      "src/bootstrap.hh"
+    ]
+  },
+  "scripts": {
+    "test": "vendor/bin/peridot --grep *Spec.hh -c peridot.hh"
+  },
+  "minimum-stability": "stable"
+}
