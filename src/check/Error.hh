@@ -24,9 +24,9 @@ final class Error implements Node
         $this->messages = new ImmVector($messages);
     }
 
-    public function getMessages() : Iterator<Message>
+    public function getMessages() : Iterable<Message>
     {
-        return $this->messages->getIterator();
+        return $this->messages->items();
     }
 
     public function hasMessages() : bool
@@ -43,7 +43,7 @@ final class Error implements Node
             $messages->add($message);
         }
 
-        return new static($messages->getIterator());
+        return new static( $messages->items() );
     }
 
 }

@@ -39,9 +39,9 @@ final class Result implements RootNode
         return $this->version;
     }
 
-    public function getErrors() : Iterator<Error>
+    public function getErrors() : Iterable<Error>
     {
-        return $this->errors->getIterator();
+        return $this->errors->items();
     }
 
     public function hasErrors() : bool
@@ -61,7 +61,7 @@ final class Result implements RootNode
         return new static(
             $result->passed,
             $result->version,
-            $errors->getIterator()
+            $errors->items()
         );
     }
 
