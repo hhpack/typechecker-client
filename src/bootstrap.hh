@@ -9,6 +9,11 @@
  * with this source code in the file LICENSE.
  */
 
+namespace hhpack\typechecker
+{
+    type Version = string;
+}
+
 namespace hhpack\typechecker\check
 {
     type Version = string;

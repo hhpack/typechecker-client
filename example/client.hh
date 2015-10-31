@@ -9,6 +9,10 @@ use hhpack\typechecker\TypeCheckerClient;
 async function main(string $cwd) : Awaitable<void>
 {
     $client = new TypeCheckerClient($cwd);
+
+    $version = await $client->version();
+    echo $version, PHP_EOL;
+
     await $client->restart();
     $result = await $client->check();
 

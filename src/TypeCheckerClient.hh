@@ -25,6 +25,14 @@ final class TypeCheckerClient implements ClientSpecification
     {
     }
 
+    public async function version() : Awaitable<Version>
+    {
+        $result = await Process::exec( $this->command('', [ '--version' ]), $this->cwd );
+        $version = (string) $result->getStdout();
+
+        return trim($version);
+    }
+
     public async function restart() : Awaitable<void>
     {
         await Process::exec( $this->command('restart'), $this->cwd );
