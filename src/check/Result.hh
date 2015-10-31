@@ -14,7 +14,7 @@ namespace hhpack\typechecker\check;
 use hhpack\typechecker\RootNode;
 use \stdClass;
 
-final class Result implements RootNode<Result>
+final class Result implements RootNode
 {
 
     private ImmutableErrors $errors;

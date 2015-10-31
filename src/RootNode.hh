@@ -13,7 +13,7 @@ namespace hhpack\typechecker;
 
 use stdClass;
 
-interface RootNode<T> extends Node<T>
+interface RootNode extends Node
 {
-    public static function fromString(string $result) : T;
+    public static function fromString(string $result) : this;
 }

@@ -14,7 +14,7 @@ namespace hhpack\typechecker\check;
 use hhpack\typechecker\Node;
 use \stdClass;
 
-final class Error implements Node<Error>
+final class Error implements Node
 {
 
     private ImmutableMessages $messages;

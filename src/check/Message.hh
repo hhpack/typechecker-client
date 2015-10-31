@@ -14,7 +14,7 @@ namespace hhpack\typechecker\check;
 use hhpack\typechecker\Node;
 use \stdClass;
 
-final class Message implements Node<Message>
+final class Message implements Node
 {
 
     public function __construct(
