@@ -52,8 +52,9 @@ describe(Result::class, function() {
     });
   });
   describe('#getErrors', function() {
-    it('return Iterator<Error> instance', function() {
-      expect($this->result->getErrors())->toBeAnInstanceOf(Iterator::class);
+    it('return errors', function() {
+      $errors = $this->result->getErrors();
+      expect(count($errors))->toBe(1);
     });
   });
   describe('#hasErrors', function() {

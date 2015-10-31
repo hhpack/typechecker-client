@@ -24,8 +24,9 @@ describe(Error::class, function() {
     $this->error = Error::fromObject($errorObject);
   });
   describe('#getMessages', function() {
-    it('return Iterator<Message> instance', function() {
-      expect($this->error->getMessages())->toBeAnInstanceOf(Iterator::class);
+    it('return messages', function() {
+      $messages = $this->error->getMessages();
+      expect(count($messages))->toBe(1);
     });
   });
   describe('#hasMessages', function() {

@@ -13,6 +13,8 @@ namespace hhpack\typechecker;
 
 use hhpack\typechecker\check\Result;
 use hhpack\process\Process;
+use RuntimeException;
+
 
 final class TypeCheckerClient implements ClientSpecification
 {
@@ -25,7 +27,7 @@ final class TypeCheckerClient implements ClientSpecification
     {
     }
 
-    public async function version() : Awaitable<Version>
+    public async function getVersion() : Awaitable<Version>
     {
         $result = await Process::exec( $this->command('', [ '--version' ]), $this->cwd );
         $version = (string) $result->getStdout();
@@ -33,12 +35,23 @@ final class TypeCheckerClient implements ClientSpecification
         return trim($version);
     }
 
-    public async function restart() : Awaitable<void>
+    public async function generateConfiguration() : Awaitable<ConfigurationPath>
+    {
+        $path = realpath($this->cwd) . '/.hhconfig';
+
+        if (touch($path) === false) {
+            throw new RuntimeException('Failed to generate .hhconfig');
+        }
+
+        return $path;
+    }
+
+    public async function restartServer() : Awaitable<void>
     {
         await Process::exec( $this->command('restart'), $this->cwd );
     }
 
-    public async function check() : Awaitable<Result>
+    public async function verifyType() : Awaitable<Result>
     {
         $result = await Process::exec( $this->command('check', [ '--json' ]), $this->cwd);
         return Result::fromString((string) $result->getStderr());

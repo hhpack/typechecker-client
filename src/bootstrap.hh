@@ -12,6 +12,7 @@
 namespace hhpack\typechecker
 {
     type Version = string;
+    type ConfigurationPath = string;
 }
 
 namespace hhpack\typechecker\check
