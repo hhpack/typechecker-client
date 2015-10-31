@@ -55,13 +55,13 @@ final class Message implements Node<Message>
         return $this->file->getEndColumnNumber();
     }
 
-    public static function fromObject(stdClass $message) : Message
+    public static function fromObject(stdClass $message) : this
     {
         $columnRange = new ColumnRange($message->start, $message->end);
         $filePosition = new FilePosition($message->line, $columnRange);
         $file = new File($message->path, $filePosition);
 
-        return new Message($message->code, $message->descr, $file);
+        return new static($message->code, $message->descr, $file);
     }
 
 }

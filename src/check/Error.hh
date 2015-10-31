@@ -34,7 +34,7 @@ final class Error implements Node<Error>
         return $this->messages->isEmpty() === false;
     }
 
-    public static function fromObject(stdClass $errorObject) : Error
+    public static function fromObject(stdClass $errorObject) : this
     {
         $messages = Vector {};
 
@@ -43,7 +43,7 @@ final class Error implements Node<Error>
             $messages->add($message);
         }
 
-        return new Error($messages->getIterator());
+        return new static($messages->getIterator());
     }
 
 }
