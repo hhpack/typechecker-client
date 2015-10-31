@@ -14,7 +14,7 @@ namespace hhpack\typechecker;
 use hhpack\typechecker\check\Result;
 use hhpack\process\Process;
 
-final class TypeCheckerClient implements Client
+final class TypeCheckerClient implements ClientSpecification
 {
 
     public async function restart(?string $cwd = (string) getcwd()) : Awaitable<void>

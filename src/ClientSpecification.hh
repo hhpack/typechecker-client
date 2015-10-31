@@ -13,7 +13,7 @@ namespace hhpack\typechecker;
 
 use hhpack\typechecker\check\Result;
 
-interface Client
+interface ClientSpecification
 {
     public function restart(?string $cwd = (string) getcwd()) : Awaitable<void>;
     public function check(?string $cwd = (string) getcwd()) : Awaitable<Result>;
