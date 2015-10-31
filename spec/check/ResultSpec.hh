@@ -1,8 +1,8 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec;
+namespace hhpack\typechecker\check\spec;
 
-use hhpack\typechecker\Result;
+use hhpack\typechecker\check\Result;
 use stdClass;
 
 describe(Result::class, function() {
@@ -76,8 +76,8 @@ describe(Result::class, function() {
 
   describe('#fromString', function() {
     beforeEach(function() {
-      $this->content = file_get_contents(__DIR__ . '/fixtures/failed/output.json');
-      $this->content = str_replace('{$rootDirectory}', realpath(__DIR__ . '/fixtures/failed') , $this->content);
+      $this->content = file_get_contents(__DIR__ . '/../fixtures/failed/output.json');
+      $this->content = str_replace('{$rootDirectory}', realpath(__DIR__ . '/../fixtures/failed') , $this->content);
       $this->content = "Typechecking ....\n\n" .  $this->content . "\nDone\n";
     });
     it('', function () {

@@ -2,6 +2,7 @@
 
 namespace hhpack\typechecker;
 
+use hhpack\typechecker\check\Result;
 use hhpack\process\Process;
 
 final class TypeCheckerClient implements Client

@@ -1,8 +1,8 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec;
+namespace hhpack\typechecker\check\spec;
 
-use hhpack\typechecker\Message;
+use hhpack\typechecker\check\Message;
 use stdClass;
 
 describe('Message', function() {

@@ -1,8 +1,8 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec;
+namespace hhpack\typechecker\check\spec;
 
-use hhpack\typechecker\Error;
+use hhpack\typechecker\check\Error;
 use stdClass;
 
 describe('Error', function() {

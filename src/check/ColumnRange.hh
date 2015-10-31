@@ -1,6 +1,7 @@
 <?hh //strict
 
-namespace hhpack\typechecker;
+namespace hhpack\typechecker\check;
+
 
 final class ColumnRange
 {

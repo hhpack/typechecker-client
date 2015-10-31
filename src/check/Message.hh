@@ -1,7 +1,8 @@
 <?hh //partial
 
-namespace hhpack\typechecker;
+namespace hhpack\typechecker\check;
 
+use hhpack\typechecker\Node;
 use \stdClass;
 
 final class Message implements Node<Message>

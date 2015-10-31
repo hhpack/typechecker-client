@@ -1,6 +1,6 @@
 <?hh //strict
 
-namespace hhpack\typechecker
+namespace hhpack\typechecker\check
 {
     type Version = string;
     type Errors = Traversable<Error>;
