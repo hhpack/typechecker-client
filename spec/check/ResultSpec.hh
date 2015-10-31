@@ -1,6 +1,6 @@
 <?hh //partial
 
-namespace hhpack\typechecker\check\spec;
+namespace hhpack\typechecker\spec\check;
 
 use hhpack\typechecker\check\Result;
 use stdClass;
@@ -80,7 +80,7 @@ describe(Result::class, function() {
       $this->content = str_replace('{$rootDirectory}', realpath(__DIR__ . '/../fixtures/failed') , $this->content);
       $this->content = "Typechecking ....\n\n" .  $this->content . "\nDone\n";
     });
-    it('', function () {
+    it('return type checked result', function () {
       $result = Result::fromString($this->content);
       expect($result->getVersion())->toBe('817b3a0 Nov 15 2014 13:25:51');
     });
