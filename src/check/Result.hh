@@ -11,10 +11,10 @@
 
 namespace hhpack\typechecker\check;
 
-use hhpack\typechecker\Node;
+use hhpack\typechecker\RootNode;
 use \stdClass;
 
-final class Result implements Node<Result>
+final class Result implements RootNode<Result>
 {
 
     private ImmutableErrors $errors;
@@ -49,7 +49,7 @@ final class Result implements Node<Result>
         return $this->errors->isEmpty() === false;
     }
 
-    public static function fromObject(stdClass $result) : Result
+    public static function fromObject(stdClass $result) : this
     {
         $errors = Vector {};
 
@@ -58,14 +58,14 @@ final class Result implements Node<Result>
             $errors->add($error);
         }
 
-        return new Result(
+        return new static(
             $result->passed,
             $result->version,
             $errors->getIterator()
         );
     }
 
-    public static function fromString(string $result) : Result
+    public static function fromString(string $result) : this
     {
         $json = preg_replace('/^([^\{]+)|([^\}]+)$/', "", $result);
         $object = json_decode(trim($json));
