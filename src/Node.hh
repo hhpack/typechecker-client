@@ -11,9 +11,7 @@
 
 namespace hhpack\typechecker;
 
-use stdClass;
-
-interface Node
+interface Node<T>
 {
-    public static function fromObject(stdClass $object) : this;
+    public static function fromOptions(T $options) : this;
 }

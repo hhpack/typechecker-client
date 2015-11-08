@@ -14,7 +14,7 @@ namespace hhpack\typechecker\check;
 use hhpack\typechecker\Node;
 use \stdClass;
 
-final class Message implements Node
+final class Message implements Node<MessageOptions>
 {
 
     public function __construct(
@@ -55,13 +55,13 @@ final class Message implements Node
         return $this->file->getEndColumnNumber();
     }
 
-    public static function fromObject(stdClass $message) : this
+    public static function fromOptions(MessageOptions $options) : this
     {
-        $columnRange = new ColumnRange($message->start, $message->end);
-        $filePosition = new FilePosition($message->line, $columnRange);
-        $file = new File($message->path, $filePosition);
+        $columnRange = new ColumnRange($options['start'], $options['end']);
+        $filePosition = new FilePosition($options['line'], $columnRange);
+        $file = new File($options['path'], $filePosition);
 
-        return new static($message->code, $message->descr, $file);
+        return new static($options['code'], $options['descr'], $file);
     }
 
 }

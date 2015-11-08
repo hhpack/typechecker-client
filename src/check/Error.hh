@@ -14,7 +14,7 @@ namespace hhpack\typechecker\check;
 use hhpack\typechecker\Node;
 use \stdClass;
 
-final class Error implements Node
+final class Error implements Node<ErrorOptions>
 {
 
     private ImmutableMessages $messages;
@@ -34,12 +34,12 @@ final class Error implements Node
         return $this->messages->isEmpty() === false;
     }
 
-    public static function fromObject(stdClass $errorObject) : this
+    public static function fromOptions(ErrorOptions $options) : this
     {
         $messages = Vector {};
 
-        foreach ($errorObject->message as $messageObject) {
-            $message = Message::fromObject($messageObject);
+        foreach ($options['message'] as $messageOptions) {
+            $message = Message::fromOptions($messageOptions);
             $messages->add($message);
         }
 

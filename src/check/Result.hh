@@ -14,7 +14,7 @@ namespace hhpack\typechecker\check;
 use hhpack\typechecker\RootNode;
 use \stdClass;
 
-final class Result implements RootNode
+final class Result implements RootNode<ResultOptions>
 {
 
     private ImmutableErrors $errors;
@@ -49,18 +49,18 @@ final class Result implements RootNode
         return $this->errors->isEmpty() === false;
     }
 
-    public static function fromObject(stdClass $result) : this
+    public static function fromOptions(ResultOptions $options) : this
     {
         $errors = Vector {};
 
-        foreach ($result->errors as $errorObject) {
-            $error = Error::fromObject($errorObject);
+        foreach ($options['errors'] as $errorOptions) {
+            $error = Error::fromOptions($errorOptions);
             $errors->add($error);
         }
 
         return new static(
-            $result->passed,
-            $result->version,
+            $options['passed'],
+            $options['version'],
             $errors->items()
         );
     }
@@ -68,9 +68,9 @@ final class Result implements RootNode
     public static function fromString(string $result) : this
     {
         $json = preg_replace('/^([^\{]+)|([^\}]+)$/', "", $result);
-        $object = json_decode(trim($json));
+        $values = json_decode(trim($json), true);
 
-        return static::fromObject($object);
+        return static::fromOptions($values);
     }
 
 }
