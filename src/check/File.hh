@@ -42,4 +42,11 @@ final class File
         return $this->position->getEndColumnNumber();
     }
 
+    <<__Memoize>>
+    public function getContent() : FileContent
+    {
+        $content = file_get_contents($this->getPath());
+        return new FileContent($content);
+    }
+
 }
