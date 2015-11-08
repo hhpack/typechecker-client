@@ -34,21 +34,20 @@ final class FileContent
         return $this->lines->count();
     }
 
-    public function getLineCodes() : ImmVector<string>
+    public function getLineCodes() : KeyedIterator<LineNumber, string>
     {
-        return $this->lines;
+        foreach ($this->lines->lazy() as $lineAt => $line) {
+            yield $lineAt + 1 => $line;
+        }
     }
 
-    public function getLineCodesByRange(LineRange $range) : ImmVector<string>
+    public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>
     {
-        $lines = Vector {};
         $endAt = $range->getEndLineNumber();
 
         for ($lineAt = $range->getStartLineNumber(); $lineAt <= $endAt; $lineAt++) {
-            $lines->add( $this->lines->at($lineAt) );
+            yield $lineAt => $this->lines->at($lineAt);
         }
-
-        return $lines->toImmVector();
     }
 
 }

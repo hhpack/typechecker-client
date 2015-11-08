@@ -11,8 +11,12 @@ describe(FileContent::class, function() {
   });
   describe('getLineCodesByLineRange', function() {
     it('returns range lines', function() {
+      $lineCount = 0;
       $lines = $this->content->getLineCodesByRange(new LineRange(1, 1));
-      expect($lines->count())->toBe(1);
+      foreach ($lines as $line) {
+        $lineCount++;
+      }
+      expect($lineCount)->toBe(1);
     });
   });
 });
