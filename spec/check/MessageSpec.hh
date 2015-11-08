@@ -3,24 +3,22 @@
 namespace hhpack\typechecker\spec\check;
 
 use hhpack\typechecker\check\Message;
-use stdClass;
 
 describe(Message::class, function() {
   beforeEach(function() {
-    $object = new stdClass();
-    $object->code = 2055;
-    $object->descr = "error message";
-    $object->path = "/foo/var/example.hh";
-    $object->line = 38;
-    $object->end = 26;
-    $object->start = 26;
-
-    $this->object = $object;
-    $this->message = Message::fromObject($object);
+    $this->options = shape(
+      'code' => 2055,
+      'descr' => "error message",
+      'path' => "/foo/var/example.hh",
+      'line' => 38,
+      'end' => 26,
+      'start' => 26
+    );
+    $this->message = Message::fromOptions($this->options);
   });
   describe('#fromObject', function() {
     it('return Message instance', function() {
-      $message = Message::fromObject($this->object);
+      $message = Message::fromOptions($this->options);
       expect($message)->toBeAnInstanceOf(Message::class);
     });
   });

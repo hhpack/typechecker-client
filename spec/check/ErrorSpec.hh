@@ -3,25 +3,19 @@
 namespace hhpack\typechecker\spec\check;
 
 use hhpack\typechecker\check\Error;
-use stdClass;
 
 describe(Error::class, function() {
   beforeEach(function() {
-    $message = new stdClass();
-    $message->code = 2055;
-    $message->descr = "error message";
-    $message->path = "/foo/var/example.hh";
-    $message->line = 38;
-    $message->end = 26;
-    $message->start = 26;
-
-    $errorObject = new stdClass();
-    $errorObject->message = [
-      $message
-    ];
-
-    $this->errorObject = $errorObject;
-    $this->error = Error::fromObject($errorObject);
+    $this->error = Error::fromOptions(shape(
+      'message' => shape(
+        'code' => 2055,
+        'descr' => "error message",
+        'path' => "/foo/var/example.hh",
+        'line' => 38,
+        'end' => 26,
+        'start' => 26
+      )
+    ));
   });
   describe('#getMessages', function() {
     it('return messages', function() {
@@ -37,11 +31,9 @@ describe(Error::class, function() {
     });
     context('when there is no message', function() {
       beforeEach(function() {
-        $errorObject = new stdClass();
-        $errorObject->message = [];
-
-        $this->errorObject = $errorObject;
-        $this->error = Error::fromObject($errorObject);
+        $this->error = Error::fromOptions(shape(
+          'message' => []
+        ));
       });
       it('return false', function() {
         expect($this->error->hasMessages())->toBeFalse();
