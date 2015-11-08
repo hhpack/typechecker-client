@@ -1,4 +1,4 @@
-<?hh //partial
+<?hh //strict
 
 /**
  * This file is part of hhpack\typechecker package.
