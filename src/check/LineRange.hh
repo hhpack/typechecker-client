@@ -20,6 +20,7 @@ final class LineRange
         private int $endAt
     )
     {
+        $this->validate();
     }
 
     public function getStartLineNumber() : LineNumber
@@ -30,6 +31,45 @@ final class LineRange
     public function getEndLineNumber() : LineNumber
     {
         return $this->endAt;
+    }
+
+    private function validate() : void
+    {
+        $this->validateLineNumber();
+        $this->validateLineRange();
+    }
+
+    private function validateLineNumber() : void
+    {
+        if ($this->getStartLineNumber() < 1) {
+            throw new UnexpectedLineNumberException(sprintf(
+                'Start line is less than 1, the start line has been specified %d.',
+                $this->getStartLineNumber())
+            );
+        }
+
+        if ($this->getEndLineNumber() < 1) {
+            throw new UnexpectedLineNumberException(sprintf(
+                'End line is less than 1, the start line has been specified %d.',
+                $this->getEndLineNumber())
+            );
+        }
+    }
+
+    private function validateLineRange() : void
+    {
+        $result = $this->getStartLineNumber() <= $this->getEndLineNumber();
+
+        if ($result === true) {
+            return;
+        }
+
+        throw new LessThanLineNumberException(sprintf(
+            'The start line is larger than the end line, the start line is %d, the end line is %d.',
+                $this->getStartLineNumber(),
+                $this->getEndLineNumber()
+            )
+        );
     }
 
     public static function onlyAt(LineNumber $lineAt) : this
