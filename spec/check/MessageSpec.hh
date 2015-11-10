@@ -3,16 +3,19 @@
 namespace hhpack\typechecker\spec\check;
 
 use hhpack\typechecker\check\Message;
+use hhpack\typechecker\check\LineRange;
 
 describe(Message::class, function() {
   beforeEach(function() {
+    $this->sourcePath = realpath(__DIR__ . '/../fixtures/failed/Example1.txt');
     $this->options = shape(
       'code' => 2055,
-      'descr' => "error message",
-      'path' => "/foo/var/example.hh",
-      'line' => 38,
-      'end' => 26,
-      'start' => 26
+      'descr' => "Expected variable",
+      'path' => $this->sourcePath,
+      'line' => 6,
+      'start' => 35,
+      'end' => 35,
+      'code'=> 1002
     );
     $this->message = Message::fromOptions($this->options);
   });
@@ -24,32 +27,42 @@ describe(Message::class, function() {
   });
   describe('#getCode', function() {
     it('return code value', function() {
-      expect($this->message->getCode())->toBe(2055);
+      expect($this->message->getCode())->toBe(1002);
     });
   });
   describe('#getDescription', function() {
     it('return description text', function() {
-      expect($this->message->getDescription())->toBe("error message");
+      expect($this->message->getDescription())->toBe("Expected variable");
     });
   });
   describe('#getPath', function() {
     it('return file path', function() {
-      expect($this->message->getPath())->toBe("/foo/var/example.hh");
+      expect($this->message->getPath())->toBe($this->sourcePath);
     });
   });
   describe('#getLineNumber', function() {
     it('return line number', function() {
-      expect($this->message->getLineNumber())->toBe(38);
+      expect($this->message->getLineNumber())->toBe(6);
     });
   });
   describe('#getStartColumnNumber', function() {
     it('return start column number', function() {
-      expect($this->message->getStartColumnNumber())->toBe(26);
+      expect($this->message->getStartColumnNumber())->toBe(35);
     });
   });
   describe('#getEndColumnNumber', function() {
     it('return end column number', function() {
-      expect($this->message->getEndColumnNumber())->toBe(26);
+      expect($this->message->getEndColumnNumber())->toBe(35);
+    });
+  });
+  describe('#getLineCodesByRange', function() {
+    it('return range lines', function() {
+      $lines = $this->message->getLineCodesByRange(new LineRange(6, 6));
+      $lines->next();
+
+      $lineCode = $lines->current();
+
+      expect($lineCode)->toBe("    public function __construct(T $)");
     });
   });
 });

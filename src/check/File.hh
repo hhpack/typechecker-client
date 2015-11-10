@@ -42,8 +42,18 @@ final class File
         return $this->position->getEndColumnNumber();
     }
 
+    public function getLineCodes() : KeyedIterator<LineNumber, string>
+    {
+        return $this->readContent()->getLineCodes();
+    }
+
+    public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>
+    {
+        return $this->readContent()->getLineCodesByRange($range);
+    }
+
     <<__Memoize>>
-    public function getContent() : FileContent
+    private function readContent() : FileContent
     {
         $content = file_get_contents($this->getPath());
         return new FileContent($content);

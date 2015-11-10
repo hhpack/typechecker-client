@@ -46,7 +46,7 @@ final class FileContent
         $endAt = $range->getEndLineNumber();
 
         for ($lineAt = $range->getStartLineNumber(); $lineAt <= $endAt; $lineAt++) {
-            yield $lineAt => $this->lines->at($lineAt);
+            yield $lineAt => $this->lines->at($lineAt - 1);
         }
     }
 
