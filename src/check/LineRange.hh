@@ -32,4 +32,14 @@ final class LineRange
         return $this->endAt;
     }
 
+    public static function onlyAt(LineNumber $lineAt) : this
+    {
+        return new static($lineAt, $lineAt);
+    }
+
+    public static function between(LineNumber $startAt, LineNumber $endAt) : this
+    {
+        return new static($startAt, $endAt);
+    }
+
 }

@@ -55,14 +55,4 @@ describe(Message::class, function() {
       expect($this->message->getEndColumnNumber())->toBe(35);
     });
   });
-  describe('#getLineCodesByRange', function() {
-    it('return range lines', function() {
-      $lines = $this->message->getLineCodesByRange(new LineRange(6, 6));
-      $lines->next();
-
-      $lineCode = $lines->current();
-
-      expect($lineCode)->toBe("    public function __construct(T $)");
-    });
-  });
 });
