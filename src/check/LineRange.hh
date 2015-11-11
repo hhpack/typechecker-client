@@ -11,65 +11,32 @@
 
 namespace hhpack\typechecker\check;
 
+use hhpack\typechecker\range\IntegerRange;
+
 final class LineRange
 {
 
+    use IntegerRange;
+
     public function __construct
     (
-        private int $startAt,
-        private int $endAt
+        int $first,
+        int $last
     )
     {
+        $this->first = $first;
+        $this->last = $last;
         $this->validate();
     }
 
     public function getStartLineNumber() : LineNumber
     {
-        return $this->startAt;
+        return $this->first;
     }
 
     public function getEndLineNumber() : LineNumber
     {
-        return $this->endAt;
-    }
-
-    private function validate() : void
-    {
-        $this->validateLineNumber();
-        $this->validateLineRange();
-    }
-
-    private function validateLineNumber() : void
-    {
-        if ($this->getStartLineNumber() < 1) {
-            throw new UnexpectedLineNumberException(sprintf(
-                'Start line is less than 1, the start line has been specified %d.',
-                $this->getStartLineNumber())
-            );
-        }
-
-        if ($this->getEndLineNumber() < 1) {
-            throw new UnexpectedLineNumberException(sprintf(
-                'End line is less than 1, the start line has been specified %d.',
-                $this->getEndLineNumber())
-            );
-        }
-    }
-
-    private function validateLineRange() : void
-    {
-        $result = $this->getStartLineNumber() <= $this->getEndLineNumber();
-
-        if ($result === true) {
-            return;
-        }
-
-        throw new LessThanLineNumberException(sprintf(
-            'The start line is larger than the end line, the start line is %d, the end line is %d.',
-                $this->getStartLineNumber(),
-                $this->getEndLineNumber()
-            )
-        );
+        return $this->last;
     }
 
     public static function onlyAt(LineNumber $lineAt) : this
@@ -77,9 +44,9 @@ final class LineRange
         return new static($lineAt, $lineAt);
     }
 
-    public static function between(LineNumber $startAt, LineNumber $endAt) : this
+    public static function between(LineNumber $first, LineNumber $last) : this
     {
-        return new static($startAt, $endAt);
+        return new static($first, $last);
     }
 
 }
