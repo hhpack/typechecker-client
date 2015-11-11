@@ -2,7 +2,7 @@
 
 namespace hhpack\typechecker\spec\check;
 
-use hhpack\typechecker\check\LineRange;
+use hhpack\typechecker\range\IntegerRange;
 use hhpack\typechecker\check\FileContent;
 
 describe(FileContent::class, function() {
@@ -12,7 +12,7 @@ describe(FileContent::class, function() {
   describe('#getLineCodesByLineRange', function() {
     context('when one line', function () {
       it('returns range lines', function() {
-        $lines = $this->content->getLineCodesByRange(LineRange::onlyAt(6));
+        $lines = $this->content->getLineCodesByRange(IntegerRange::only(6));
         $lines->next();
         $lineCode = $lines->current();
 
@@ -21,7 +21,7 @@ describe(FileContent::class, function() {
     });
     context('when two line', function () {
       it('returns range lines', function() {
-        $lines = $this->content->getLineCodesByRange(LineRange::between(6, 7));
+        $lines = $this->content->getLineCodesByRange(IntegerRange::between(6, 7));
 
         $lines->next();
         $lineCode = $lines->current();

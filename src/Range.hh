@@ -16,4 +16,6 @@ interface Range<T>
     public function first() : T;
     public function last() : T;
     public function contains(T $value) : bool;
+    public static function only(T $value) : this;
+    public static function between(T $first, T $last) : this;
 }

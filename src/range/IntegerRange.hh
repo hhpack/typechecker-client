@@ -40,6 +40,16 @@ final class IntegerRange implements Range<int>
         return $this->first() <= $value && $this->last() >= $value;
     }
 
+    public static function only(int $value) : this
+    {
+        return new static($value, $value);
+    }
+
+    public static function between(int $first, int $last) : this
+    {
+        return new static($first, $last);
+    }
+
     private function validate() : void
     {
         $this->validateFirstValue();
