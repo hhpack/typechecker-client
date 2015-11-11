@@ -18,10 +18,9 @@ final class LineRange
 
     use IntegerRange;
 
-    public function __construct
-    (
-        int $first,
-        int $last
+    public function __construct(
+        LineNumber $first,
+        LineNumber $last
     )
     {
         $this->first = $first;

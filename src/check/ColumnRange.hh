@@ -11,26 +11,31 @@
 
 namespace hhpack\typechecker\check;
 
+use hhpack\typechecker\range\IntegerRange;
 
 final class ColumnRange
 {
 
-    public function __construct
-    (
-        private ColumnNumber $startColumnNumber,
-        private ColumnNumber $endColumnNumber
+    use IntegerRange;
+
+    public function __construct(
+        ColumnNumber $first,
+        ColumnNumber $last
     )
     {
+        $this->first = $first;
+        $this->last = $last;
+        $this->validate();
     }
 
     public function getStartColumnNumber() : ColumnNumber
     {
-        return $this->startColumnNumber;
+        return $this->first;
     }
 
     public function getEndColumnNumber() : ColumnNumber
     {
-        return $this->endColumnNumber;
+        return $this->last;
     }
 
 }
