@@ -15,10 +15,10 @@ use hhpack\typechecker\check\Result;
 
 interface ClientSpecification
 {
-    public function clientVersion() : Awaitable<Version>;
-    public function generateConfiguration() : Awaitable<ConfigurationPath>;
-    public function startServer() : Awaitable<void>;
-    public function stopServer() : Awaitable<void>;
-    public function restartServer() : Awaitable<void>;
+    public function version() : Awaitable<Version>;
+    public function init() : Awaitable<ConfigurationPath>;
+    public function start() : Awaitable<void>;
+    public function stop() : Awaitable<void>;
+    public function restart() : Awaitable<void>;
     public function check() : Awaitable<Result>;
 }

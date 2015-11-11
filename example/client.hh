@@ -10,10 +10,10 @@ async function main(string $cwd) : Awaitable<void>
 {
     $client = new TypeCheckerClient($cwd);
 
-    $version = await $client->clientVersion();
+    $version = await $client->version();
     echo $version, PHP_EOL;
 
-    await $client->restartServer();
+    await $client->restart();
     $result = await $client->check();
 
     if ($result->isPassed()) {
