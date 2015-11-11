@@ -12,7 +12,7 @@
 namespace hhpack\typechecker\check;
 
 use hhpack\typechecker\Node;
-use \stdClass;
+use hhpack\typechecker\range\IntegerRange;
 
 final class Message implements Node<MessageOptions>
 {
@@ -62,7 +62,7 @@ final class Message implements Node<MessageOptions>
 
     public static function fromOptions(MessageOptions $options) : this
     {
-        $columnRange = new ColumnRange($options['start'], $options['end']);
+        $columnRange = new IntegerRange($options['start'], $options['end']);
         $filePosition = new FilePosition($options['line'], $columnRange);
         $file = new File($options['path'], $filePosition);
 

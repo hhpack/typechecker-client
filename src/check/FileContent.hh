@@ -43,9 +43,9 @@ final class FileContent
 
     public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>
     {
-        $endAt = $range->getEndLineNumber();
+        $endAt = $range->last();
 
-        for ($lineAt = $range->getStartLineNumber(); $lineAt <= $endAt; $lineAt++) {
+        for ($lineAt = $range->first(); $lineAt <= $endAt; $lineAt++) {
             yield $lineAt => $this->lines->at($lineAt - 1);
         }
     }

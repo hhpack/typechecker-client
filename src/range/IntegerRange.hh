@@ -14,13 +14,16 @@ namespace hhpack\typechecker\range;
 use hhpack\typechecker\Range;
 use UnexpectedValueException;
 
-
-trait IntegerRange implements Range<int>
+final class IntegerRange implements Range<int>
 {
 
-    private int $first;
-    private int $last;
-    private int $min = 1;
+    public function __construct(
+        private int $first,
+        private int $last,
+        private int $min = 1
+    )
+    {
+    }
 
     public function first() : int
     {
