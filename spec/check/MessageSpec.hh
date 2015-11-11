@@ -55,4 +55,75 @@ describe(Message::class, function() {
       expect($this->message->getEndColumnNumber())->toBe(35);
     });
   });
+
+  describe('#getDetailCodes', function() {
+    context('when greater then last line', function () {
+      beforeEach(function() {
+        $this->options = shape(
+          'code' => 2055,
+          'descr' => "Expected variable",
+          'path' => $this->sourcePath,
+          'line' => 9,
+          'start' => 35,
+          'end' => 35,
+          'code'=> 1002
+        );
+        $this->message = Message::fromOptions($this->options);
+      });
+      it('return detail code', function() {
+        $lines = $this->message->getDetailCodes();
+
+        $lines->next();
+        expect($lines->key())->toBe(7);
+        expect($lines->current())->toBe('    {');
+
+        $lines->next();
+        expect($lines->key())->toBe(8);
+        expect($lines->current())->toBe('    }');
+
+        $lines->next();
+        expect($lines->key())->toBe(9);
+        expect($lines->current())->toBe('');
+
+        $lines->next();
+        expect($lines->key())->toBe(10);
+        expect($lines->current())->toBe('}');
+      });
+    });
+
+    context('when less then first line', function () {
+      beforeEach(function() {
+        $this->options = shape(
+          'code' => 2055,
+          'descr' => "Expected variable",
+          'path' => $this->sourcePath,
+          'line' => 2,
+          'start' => 35,
+          'end' => 35,
+          'code'=> 1002
+        );
+        $this->message = Message::fromOptions($this->options);
+      });
+      it('return detail code', function() {
+        $lines = $this->message->getDetailCodes();
+
+        $lines->next();
+        expect($lines->key())->toBe(1);
+        expect($lines->current())->toBe('<?hh //strict');
+
+        $lines->next();
+        expect($lines->key())->toBe(2);
+        expect($lines->current())->toBe('');
+
+        $lines->next();
+        expect($lines->key())->toBe(3);
+        expect($lines->current())->toBe('class Example<Tk>');
+
+        $lines->next();
+        expect($lines->key())->toBe(4);
+        expect($lines->current())->toBe('{');
+      });
+    });
+  });
+
 });

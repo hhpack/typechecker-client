@@ -55,8 +55,27 @@ final class Message implements Node<MessageOptions>
         return $this->file->getEndColumnNumber();
     }
 
-    public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>
+    public function getLineCode() : string
     {
+        return $this->file->getLineCode( $this->getLineNumber() );
+    }
+
+    public function getDetailCodes() : KeyedIterator<LineNumber, string>
+    {
+        $lineAt = $this->getLineNumber();
+
+        $startLineAt = $lineAt - 2;
+        $startLineAt = ($startLineAt <= 0) ? 1 : $startLineAt;
+
+        $endLineAt = $lineAt + 2;
+        $endLineAt = ($this->file->getTotalLineCount() <= $endLineAt)
+            ? $this->file->getTotalLineCount() : $endLineAt;
+
+        $range = IntegerRange::between(
+            $startLineAt,
+            $endLineAt
+        );
+
         return $this->file->getLineCodesByRange($range);
     }
 

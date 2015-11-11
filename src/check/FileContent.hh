@@ -34,11 +34,21 @@ final class FileContent
         return $this->lines->count();
     }
 
+    public function getLineCode(LineNumber $lineAt) : string
+    {
+        return $this->lines->at($lineAt);
+    }
+
     public function getLineCodes() : KeyedIterator<LineNumber, string>
     {
         foreach ($this->lines->lazy() as $lineAt => $line) {
             yield $lineAt + 1 => $line;
         }
+    }
+
+    public function getTotalLineCount() : int
+    {
+        return $this->lines->count();
     }
 
     public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>

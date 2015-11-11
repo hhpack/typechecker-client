@@ -42,6 +42,11 @@ final class File
         return $this->position->getEndColumnNumber();
     }
 
+    public function getLineCode(LineNumber $lineAt) : string
+    {
+        return $this->readContent()->getLineCode($lineAt);
+    }
+
     public function getLineCodes() : KeyedIterator<LineNumber, string>
     {
         return $this->readContent()->getLineCodes();
@@ -50,6 +55,11 @@ final class File
     public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>
     {
         return $this->readContent()->getLineCodesByRange($range);
+    }
+
+    public function getTotalLineCount() : int
+    {
+        return $this->readContent()->getTotalLineCount();
     }
 
     <<__Memoize>>
