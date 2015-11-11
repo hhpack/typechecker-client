@@ -27,7 +27,7 @@ final class TypeCheckerClient implements ClientSpecification
     {
     }
 
-    public async function getVersion() : Awaitable<Version>
+    public async function clientVersion() : Awaitable<Version>
     {
         $result = await Process::exec( $this->command('', [ '--version' ]), $this->cwd );
         $version = (string) $result->getStdout();
@@ -46,12 +46,22 @@ final class TypeCheckerClient implements ClientSpecification
         return $path;
     }
 
+    public async function startServer() : Awaitable<void>
+    {
+        await Process::exec( $this->command('start'), $this->cwd );
+    }
+
+    public async function stopServer() : Awaitable<void>
+    {
+        await Process::exec( $this->command('stop'), $this->cwd );
+    }
+
     public async function restartServer() : Awaitable<void>
     {
         await Process::exec( $this->command('restart'), $this->cwd );
     }
 
-    public async function verifyType() : Awaitable<Result>
+    public async function check() : Awaitable<Result>
     {
         $result = await Process::exec( $this->command('check', [ '--json' ]), $this->cwd);
         return Result::fromString((string) $result->getStderr());
