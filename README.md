@@ -16,9 +16,9 @@ use hhpack\typechecker\TypeCheckerClient;
 
 $client = new TypeCheckerClient(getcwd());
 
-await $client->restartServer();
+await $client->restart();
 
-$result = await $client->verifyType();
+$result = await $client->check();
 
 if ($result->isPassed()) {
     echo "Passed!!", PHP_EOL;
@@ -30,10 +30,12 @@ if ($result->isPassed()) {
 API of Client
 --------------------------------------
 
-* **getVersion** - return type checker version  
-* **generateConfiguration** - generate configuration file
-* **restartServer** - restarts a hack server
-* **verifyType** - return result of type check
+* **version** - return type checker version  
+* **init** - generate configuration file
+* **start** - starts a hack server
+* **stop** - stops a hack server
+* **restart** - restarts a hack server
+* **check** - return result of type check
 
 Run the test
 ----------------------------------------
