@@ -3,32 +3,30 @@
 namespace hhpack\typechecker\spec\check;
 
 use hhpack\typechecker\check\Result;
-use stdClass;
 
 describe(Result::class, function() {
   beforeEach(function() {
-    $message = new stdClass();
-    $message->code = 2055;
-    $message->descr = "error message";
-    $message->path = "/foo/var/example.hh";
-    $message->line = 38;
-    $message->end = 26;
-    $message->start = 26;
+    $messageOptions = shape(
+      'code' => 2055,
+      'descr' => "error message",
+      'path' => "/foo/var/example.hh",
+      'line' => 38,
+      'end' => 26,
+      'start' => 26
+    );
 
-    $errorObject = new stdClass();
-    $errorObject->message = [
-      $message
-    ];
+    $errorOptions = shape(
+      'message' => [ $messageOptions ]
+    );
 
-    $resultObject = new stdClass();
-    $resultObject->passed = true;
-    $resultObject->version = "817b3a0 Nov 15 2014 13:25:51";
-    $resultObject->errors = [
-      $error
-    ];
+    $resultOptions = shape(
+      'passed' => true,
+      'version' => "817b3a0 Nov 15 2014 13:25:51",
+      'errors' => [ $errorOptions ]
+    );
 
-    $this->resultObject = $resultObject;
-    $this->result = Result::fromObject($resultObject);
+    $this->resultOptions = $resultOptions;
+    $this->result = Result::fromOptions($resultOptions);
   });
   describe('#getVersion', function() {
     it('return version text', function() {
@@ -43,8 +41,8 @@ describe(Result::class, function() {
     });
     context('when failed', function() {
       beforeEach(function() {
-        $this->resultObject->passed = false;
-        $this->failedResult = Result::fromObject($this->resultObject);
+        $this->resultOptions['passed'] = false;
+        $this->failedResult = Result::fromOptions($this->resultOptions);
       });
       it('return false', function() {
         expect($this->failedResult->isPassed())->toBeFalse();
@@ -60,9 +58,9 @@ describe(Result::class, function() {
   describe('#hasErrors', function() {
     context('when there is no error', function() {
       beforeEach(function() {
-        $this->resultObject->passed = true;
-        $this->resultObject->errors = [];
-        $this->passedResult = Result::fromObject($this->resultObject);
+        $this->resultOptions['passed'] = true;
+        $this->resultOptions['errors'] = [];
+        $this->passedResult = Result::fromOptions($this->resultOptions);
       });
       it('return false', function() {
         expect($this->passedResult->hasErrors())->toBeFalse();

@@ -9,9 +9,10 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker;
+namespace hhpack\typechecker\range;
 
-interface Node<T>
+use UnexpectedValueException;
+
+final class LessThanException extends UnexpectedValueException
 {
-    public static function fromOptions(T $options) : this;
 }

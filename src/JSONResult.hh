@@ -11,9 +11,7 @@
 
 namespace hhpack\typechecker;
 
-use stdClass;
-
-interface RootNode extends Node
+interface JSONResult<T>
 {
     public static function fromString(string $result) : this;
 }

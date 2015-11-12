@@ -11,12 +11,14 @@
 
 namespace hhpack\typechecker\check;
 
+use hhpack\typechecker\range\IntegerRange;
+
 final class FilePosition
 {
 
     public function __construct(
         private LineNumber $lineNumber,
-        private ColumnRange $columnRange
+        private IntegerRange $columnRange
     )
     {
     }
@@ -28,12 +30,12 @@ final class FilePosition
 
     public function getStartColumnNumber() : ColumnNumber
     {
-        return $this->columnRange->getStartColumnNumber();
+        return $this->columnRange->first();
     }
 
     public function getEndColumnNumber() : ColumnNumber
     {
-        return $this->columnRange->getEndColumnNumber();
+        return $this->columnRange->last();
     }
 
 }

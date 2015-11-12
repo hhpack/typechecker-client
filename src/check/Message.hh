@@ -1,4 +1,4 @@
-<?hh //partial
+<?hh //strict
 
 /**
  * This file is part of hhpack\typechecker package.
@@ -12,9 +12,9 @@
 namespace hhpack\typechecker\check;
 
 use hhpack\typechecker\Node;
-use \stdClass;
+use hhpack\typechecker\range\IntegerRange;
 
-final class Message implements Node
+final class Message implements Node<MessageOptions>
 {
 
     public function __construct(
@@ -55,13 +55,37 @@ final class Message implements Node
         return $this->file->getEndColumnNumber();
     }
 
-    public static function fromObject(stdClass $message) : this
+    public function getLineCode() : string
     {
-        $columnRange = new ColumnRange($message->start, $message->end);
-        $filePosition = new FilePosition($message->line, $columnRange);
-        $file = new File($message->path, $filePosition);
+        return $this->file->getLineCode( $this->getLineNumber() );
+    }
 
-        return new static($message->code, $message->descr, $file);
+    public function getDetailCodes() : KeyedIterator<LineNumber, string>
+    {
+        $lineAt = $this->getLineNumber();
+
+        $startLineAt = $lineAt - 2;
+        $startLineAt = ($startLineAt <= 0) ? 1 : $startLineAt;
+
+        $endLineAt = $lineAt + 2;
+        $endLineAt = ($this->file->getTotalLineCount() <= $endLineAt)
+            ? $this->file->getTotalLineCount() : $endLineAt;
+
+        $range = IntegerRange::between(
+            $startLineAt,
+            $endLineAt
+        );
+
+        return $this->file->getLineCodesByRange($range);
+    }
+
+    public static function fromOptions(MessageOptions $options) : this
+    {
+        $columnRange = new IntegerRange($options['start'], $options['end']);
+        $filePosition = new FilePosition($options['line'], $columnRange);
+        $file = new File($options['path'], $filePosition);
+
+        return new static($options['code'], $options['descr'], $file);
     }
 
 }

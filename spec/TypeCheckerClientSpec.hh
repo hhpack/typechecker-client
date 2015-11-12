@@ -9,9 +9,9 @@ describe(TypeCheckerClient::class, function() {
     unlink('/tmp/.hhconfig');
     $this->checker = new TypeCheckerClient('/tmp');
   });
-  describe('#generateConfiguration', function() {
+  describe('#init', function() {
     it('return config file path', function() {
-      $handle = $this->checker->generateConfiguration();
+      $handle = $this->checker->init();
       $handle->import();
       $file = $handle->result();
 

@@ -16,7 +16,7 @@ use hhpack\process\Process;
 use RuntimeException;
 
 
-final class TypeCheckerClient implements ClientSpecification
+final class TypeCheckerClient implements ClientBehavior
 {
 
     const PROGRAM = 'hh_client';
@@ -27,7 +27,7 @@ final class TypeCheckerClient implements ClientSpecification
     {
     }
 
-    public async function getVersion() : Awaitable<Version>
+    public async function version() : Awaitable<Version>
     {
         $result = await Process::exec( $this->command('', [ '--version' ]), $this->cwd );
         $version = (string) $result->getStdout();
@@ -35,7 +35,7 @@ final class TypeCheckerClient implements ClientSpecification
         return trim($version);
     }
 
-    public async function generateConfiguration() : Awaitable<ConfigurationPath>
+    public async function init() : Awaitable<ConfigurationPath>
     {
         $path = realpath($this->cwd) . '/.hhconfig';
 
@@ -46,12 +46,22 @@ final class TypeCheckerClient implements ClientSpecification
         return $path;
     }
 
-    public async function restartServer() : Awaitable<void>
+    public async function start() : Awaitable<void>
+    {
+        await Process::exec( $this->command('start'), $this->cwd );
+    }
+
+    public async function stop() : Awaitable<void>
+    {
+        await Process::exec( $this->command('stop'), $this->cwd );
+    }
+
+    public async function restart() : Awaitable<void>
     {
         await Process::exec( $this->command('restart'), $this->cwd );
     }
 
-    public async function verifyType() : Awaitable<Result>
+    public async function check() : Awaitable<Result>
     {
         $result = await Process::exec( $this->command('check', [ '--json' ]), $this->cwd);
         return Result::fromString((string) $result->getStderr());
