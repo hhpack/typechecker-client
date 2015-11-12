@@ -13,7 +13,7 @@ namespace hhpack\typechecker;
 
 use hhpack\typechecker\check\Result;
 
-interface ClientSpecification
+interface ClientBehavior
 {
     public function version() : Awaitable<Version>;
     public function init() : Awaitable<ConfigurationPath>;

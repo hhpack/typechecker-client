@@ -16,7 +16,7 @@ use hhpack\process\Process;
 use RuntimeException;
 
 
-final class TypeCheckerClient implements ClientSpecification
+final class TypeCheckerClient implements ClientBehavior
 {
 
     const PROGRAM = 'hh_client';
