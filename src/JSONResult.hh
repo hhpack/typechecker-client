@@ -11,7 +11,7 @@
 
 namespace hhpack\typechecker;
 
-interface RootNode<T> extends Node<T>
+interface JSONResult<T>
 {
     public static function fromString(string $result) : this;
 }
