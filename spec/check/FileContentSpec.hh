@@ -11,7 +11,7 @@ describe(FileContent::class, function() {
   });
   describe('#getLineCode', function() {
     context('when start line', function () {
-      it('returns end line', function() {
+      it('returns start line', function() {
         $startAt = $this->content->getStartLineNumber();
         $lineCode = $this->content->getLineCode($startAt);
         expect($lineCode)->toBe("<?hh //strict");
