@@ -21,7 +21,7 @@ final class FileContent
         string $content
     )
     {
-        $this->lines = ImmVector::fromItems(explode(PHP_EOL, $content));
+        $this->lines = ImmVector::fromItems(explode(PHP_EOL, rtrim($content)));
     }
 
     public function getStartLineNumber() : LineNumber
@@ -36,7 +36,7 @@ final class FileContent
 
     public function getLineCode(LineNumber $lineAt) : string
     {
-        return $this->lines->at($lineAt);
+        return $this->lines->at($lineAt - 1);
     }
 
     public function getLineCodes() : KeyedIterator<LineNumber, string>
