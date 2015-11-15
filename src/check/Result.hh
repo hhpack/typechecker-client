@@ -44,6 +44,11 @@ final class Result implements JSONResult<ResultOptions>, Node<ResultOptions>
         return $this->errors->lazy()->getIterator();
     }
 
+    public function getErrorCount() : int
+    {
+        return $this->errors->count();
+    }
+
     public function hasErrors() : bool
     {
         return $this->errors->isEmpty() === false;
