@@ -1,6 +1,6 @@
 <?hh // partial
 
-namespace hhpack\typesafety;
+namespace hhpack\typechecker;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
