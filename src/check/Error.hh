@@ -24,9 +24,9 @@ final class Error implements Node<ErrorOptions>
         $this->messages = new ImmVector($messages);
     }
 
-    public function getMessages() : Iterable<Message>
+    public function getMessages() : KeyedIterator<int, Message>
     {
-        return $this->messages->items();
+        return $this->messages->lazy();
     }
 
     public function hasMessages() : bool
