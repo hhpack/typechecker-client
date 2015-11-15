@@ -29,9 +29,14 @@ final class Result implements JSONResult<ResultOptions>, Node<ResultOptions>
         $this->errors = new ImmVector($errors);
     }
 
-    public function isPassed() : bool
+    public function isOk() : bool
     {
         return $this->passed;
+    }
+
+    public function isError() : bool
+    {
+        return $this->isOk() === false;
     }
 
     public function getVersion() : Version

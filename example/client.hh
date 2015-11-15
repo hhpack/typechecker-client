@@ -16,7 +16,7 @@ async function main(string $cwd) : Awaitable<void>
     await $client->restart();
     $result = await $client->check();
 
-    if ($result->isPassed()) {
+    if ($result->isOk()) {
         echo 'Type check Passed', PHP_EOL;
         return;
     }

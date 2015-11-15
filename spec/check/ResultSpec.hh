@@ -33,10 +33,10 @@ describe(Result::class, function() {
       expect($this->result->getVersion())->toBe("817b3a0 Nov 15 2014 13:25:51");
     });
   });
-  describe('#isPassed', function() {
+  describe('#isOk', function() {
     context('when passed', function() {
       it('return true', function() {
-        expect($this->result->isPassed())->toBeTrue();
+        expect($this->result->isOk())->toBeTrue();
       });
     });
     context('when failed', function() {
@@ -45,7 +45,7 @@ describe(Result::class, function() {
         $this->failedResult = Result::fromOptions($this->resultOptions);
       });
       it('return false', function() {
-        expect($this->failedResult->isPassed())->toBeFalse();
+        expect($this->failedResult->isOk())->toBeFalse();
       });
     });
   });
