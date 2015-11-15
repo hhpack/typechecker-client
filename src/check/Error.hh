@@ -26,7 +26,7 @@ final class Error implements Node<ErrorOptions>
 
     public function getMessages() : KeyedIterator<int, Message>
     {
-        return $this->messages->lazy();
+        return $this->messages->lazy()->getIterator();
     }
 
     public function hasMessages() : bool
