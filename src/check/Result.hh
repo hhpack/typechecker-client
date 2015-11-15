@@ -39,9 +39,9 @@ final class Result implements JSONResult<ResultOptions>, Node<ResultOptions>
         return $this->version;
     }
 
-    public function getErrors() : Iterable<Error>
+    public function getErrors() : KeyedIterator<int, Error>
     {
-        return $this->errors->items();
+        return $this->errors->lazy()->getIterator();
     }
 
     public function hasErrors() : bool
