@@ -12,7 +12,8 @@
 namespace hhpack\typechecker;
 
 use hhpack\typechecker\check\Result;
-use hhpack\process\Process;
+use hhpack\process;
+use hhpack\process\ExecOptions;
 use RuntimeException;
 
 
@@ -29,8 +30,10 @@ final class TypeCheckerClient implements ClientBehavior
 
     public async function version() : Awaitable<Version>
     {
-        $result = await Process::exec( $this->command('', [ '--version' ]), $this->cwd );
-        $version = (string) $result->getStdout();
+        $options = new ExecOptions($this->cwd);
+
+        $result = await process\exec( $this->command('', [ '--version' ]), $options );
+        $version = (string) $result->stdout();
 
         return trim($version);
     }
@@ -48,23 +51,28 @@ final class TypeCheckerClient implements ClientBehavior
 
     public async function start() : Awaitable<void>
     {
-        await Process::exec( $this->command('start'), $this->cwd );
+        $options = new ExecOptions($this->cwd);
+        await process\exec( $this->command('start'), $options );
     }
 
     public async function stop() : Awaitable<void>
     {
-        await Process::exec( $this->command('stop'), $this->cwd );
+        $options = new ExecOptions($this->cwd);
+        await process\exec( $this->command('stop'), $options );
     }
 
     public async function restart() : Awaitable<void>
     {
-        await Process::exec( $this->command('restart'), $this->cwd );
+        $options = new ExecOptions($this->cwd);
+        await process\exec( $this->command('restart'), $options );
     }
 
     public async function check() : Awaitable<Result>
     {
-        $result = await Process::exec( $this->command('check', [ '--json' ]), $this->cwd);
-        return Result::fromString((string) $result->getStderr());
+        $options = new ExecOptions($this->cwd);
+
+        $result = await process\exec( $this->command('check', [ '--json' ]), $options);
+        return Result::fromString((string) $result->stderr());
     }
 
     private function command(string $command, Traversable<string> $args = []) : string
