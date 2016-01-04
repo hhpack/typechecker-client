@@ -29,7 +29,6 @@ describe(FileContent::class, function() {
     context('when one line', function () {
       it('returns range lines', function() {
         $lines = $this->content->getLineCodesByRange(IntegerRange::only(6));
-        $lines->next();
         $lineCode = $lines->current();
 
         expect($lineCode)->toBe("    public function __construct(T $)");
@@ -39,7 +38,6 @@ describe(FileContent::class, function() {
       it('returns range lines', function() {
         $lines = $this->content->getLineCodesByRange(IntegerRange::between(6, 7));
 
-        $lines->next();
         $lineCode = $lines->current();
         expect($lineCode)->toBe("    public function __construct(T $)");
 
