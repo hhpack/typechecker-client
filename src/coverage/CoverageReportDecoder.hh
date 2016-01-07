@@ -12,6 +12,7 @@
 namespace hhpack\typechecker\coverage;
 
 use hhpack\typechecker\JSONDecoder;
+use RuntimeException;
 
 final class CoverageReportDecoder implements JSONDecoder<CoverageNode>
 {
@@ -25,6 +26,16 @@ final class CoverageReportDecoder implements JSONDecoder<CoverageNode>
         }
 
         return $this->decodeNode($object->toArray());
+    }
+
+    public function decodeFile(string $jsonFile) : CoverageNode
+    {
+        if (!is_readable($jsonFile)) {
+            throw new RuntimeException(sprintf('File %s is not a readable file', $jsonFile));
+        }
+
+        $content = file_get_contents($jsonFile);
+        return $this->decode($content);
     }
 
     public function decodeNode(KeyedTraversable<string, mixed> $json) : CoverageNode
