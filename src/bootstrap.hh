@@ -48,3 +48,17 @@ namespace hhpack\typechecker\check
         'errors' => array<ErrorOptions>
     );
 }
+
+namespace hhpack\typechecker\coverage
+{
+    type FileOptions = shape(
+        'name' => string,
+        'result' => ImmMap<string, Coverage>
+    );
+
+    type DirectoryOptions = shape(
+        'name' => string,
+        'result' => ImmMap<string, Coverage>,
+        'children' => ImmMap<string, CoverageNode>
+    );
+}
