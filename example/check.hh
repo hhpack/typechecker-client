@@ -6,7 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use hhpack\typechecker\TypeCheckerClient;
 
-async function main(string $cwd) : Awaitable<void>
+async function check_main(string $cwd) : Awaitable<void>
 {
     $client = new TypeCheckerClient($cwd);
 
@@ -24,4 +24,4 @@ async function main(string $cwd) : Awaitable<void>
     echo 'Type check Failed', PHP_EOL;
 }
 
-main(realpath(__DIR__ . '/../'));
+check_main(realpath(__DIR__ . '/../'));
