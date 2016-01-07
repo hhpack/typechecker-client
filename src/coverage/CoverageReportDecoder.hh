@@ -19,7 +19,8 @@ final class CoverageReportDecoder implements JSONDecoder<CoverageNode>
 
     public function decode(string $json) : CoverageNode
     {
-        $object = new Map(json_decode($json, true));
+        $cleanContent = preg_replace('/^([^\{]+)|([^\}]+)$/', "", $json);
+        $object = new Map(json_decode(trim($cleanContent), true));
 
         if (!$object->containsKey('name')) {
             $object->set('name', 'root');
