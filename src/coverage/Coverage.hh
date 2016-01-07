@@ -22,4 +22,14 @@ final class Coverage
     {
     }
 
+    public function parsentage() : float
+    {
+        return (float) $this->checked / $this->total();
+    }
+
+    public function total() : int
+    {
+        return $this->checked + $this->partial + $this->unchecked;
+    }
+
 }
