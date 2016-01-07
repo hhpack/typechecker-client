@@ -16,6 +16,8 @@ use hhpack\typechecker\Visitor;
 interface CoverageNode
 {
     public function name() : string;
+    public function parsentage() : float;
+    public function total() : int;
     public function hasChildren() : bool;
     public function children() : ImmMap<string, CoverageNode>;
     public function accept(Visitor<CoverageNode> $visitor) : void;
