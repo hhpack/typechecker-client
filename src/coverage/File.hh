@@ -17,6 +17,8 @@ use hhpack\typechecker\FromOptions;
 final class File implements CoverageNode, FromOptions<FileOptions>
 {
 
+    use CoverageCalculatable;
+
     public function __construct(
         private string $name,
         private ImmMap<string, Coverage> $result
@@ -27,32 +29,6 @@ final class File implements CoverageNode, FromOptions<FileOptions>
     public function name() : string
     {
         return $this->name;
-    }
-
-    public function parsentage() : float
-    {
-        $checked = 0;
-
-        foreach ($this->result->lazy() as $_ => $coverage) {
-            $checked += $coverage->checked();
-        }
-
-        if ($this->total() <= 0) {
-            return 0.0;
-        }
-
-        return (float) $checked / $this->total();
-    }
-
-    public function total() : int
-    {
-        $total = 0;
-
-        foreach ($this->result->lazy() as $_ => $coverage) {
-            $total += $coverage->total();
-        }
-
-        return $total;
     }
 
     public function hasChildren() : bool

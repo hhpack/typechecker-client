@@ -17,6 +17,9 @@ interface CoverageNode
 {
     public function name() : string;
     public function parsentage() : float;
+    public function checked() : int;
+    public function partial() : int;
+    public function unchecked() : int;
     public function total() : int;
     public function hasChildren() : bool;
     public function children() : ImmMap<string, CoverageNode>;
