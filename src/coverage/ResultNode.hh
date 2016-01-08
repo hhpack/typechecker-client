@@ -17,6 +17,7 @@ use hhpack\typechecker\VisitorAcceptable;
 interface ResultNode extends VisitorAcceptable<ResultNode>
 {
     public function name() : string;
+    public function result() : ImmMap<string, Coverage>;
     public function checked() : int;
     public function partial() : int;
     public function unchecked() : int;

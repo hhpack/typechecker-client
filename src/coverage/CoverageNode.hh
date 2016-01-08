@@ -29,6 +29,11 @@ abstract class CoverageNode implements ResultNode, VisitorAcceptable<ResultNode>
         return $this->name;
     }
 
+    public function result() : ImmMap<string, Coverage>
+    {
+        return $this->result;
+    }
+
     protected function calculate(KeyedTraversable<string, Coverage> $result) : void
     {
         foreach ($result as $_ => $coverage) {
