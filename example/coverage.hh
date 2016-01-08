@@ -15,10 +15,27 @@ async function coverage_main(string $cwd) : Awaitable<void>
 
     $result = await $client->coverage();
 
-    await async {
-      $visitor = new ReportVisitor();
-      $visitor->visit($result);
-    };
+    $reporter = new Reporter();
+    await $reporter->report($result);
+}
+
+final class Reporter
+{
+
+    private Visitor<ResultNode> $visitor;
+
+    public function __construct()
+    {
+        $this->visitor = new ReportVisitor();
+    }
+
+    public async function report(ResultNode $node) : Awaitable<void>
+    {
+        await async {
+          $this->visitor->visit($node);
+        };
+    }
+
 }
 
 final class ReportVisitor implements Visitor<ResultNode>
