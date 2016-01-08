@@ -18,6 +18,7 @@ final class File implements CoverageNode, FromOptions<FileOptions>
 {
 
     use CoverageCalculatable;
+    use VisitorAcceptable;
 
     public function __construct(
         private string $name,
@@ -39,11 +40,6 @@ final class File implements CoverageNode, FromOptions<FileOptions>
     public function children() : ImmMap<string, CoverageNode>
     {
         return ImmMap {};
-    }
-
-    public function accept(Visitor<CoverageNode> $visitor) : void
-    {
-        $visitor->visit($this);
     }
 
     public static function fromOptions(FileOptions $options) : this

@@ -18,6 +18,7 @@ final class Directory implements CoverageNode, FromOptions<DirectoryOptions>
 {
 
     use CoverageCalculatable;
+    use VisitorAcceptable;
 
     public function __construct(
         private string $name,
@@ -41,11 +42,6 @@ final class Directory implements CoverageNode, FromOptions<DirectoryOptions>
     public function children() : ImmMap<string, CoverageNode>
     {
         return $this->children;
-    }
-
-    public function accept(Visitor<CoverageNode> $visitor) : void
-    {
-        $visitor->visit($this);
     }
 
     public static function fromOptions(DirectoryOptions $options) : this
