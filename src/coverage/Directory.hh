@@ -14,18 +14,17 @@ namespace hhpack\typechecker\coverage;
 use hhpack\typechecker\Visitor;
 use hhpack\typechecker\FromOptions;
 
-final class Directory implements ResultNode, FromOptions<DirectoryOptions>
+final class Directory extends CoverageNode implements ResultNode, FromOptions<DirectoryOptions>
 {
 
-    use CoverageCalculatable;
-    use VisitorAcceptable;
-
     public function __construct(
-        private string $name,
-        private ImmMap<string, Coverage> $result,
+        string $name,
+        ImmMap<string, Coverage> $result,
         private ImmMap<string, ResultNode> $children
     )
     {
+        $this->name = $name;
+        $this->result = $result;
         $this->calculate($result);
     }
 

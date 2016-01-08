@@ -14,17 +14,17 @@ namespace hhpack\typechecker\coverage;
 use hhpack\typechecker\Visitor;
 use hhpack\typechecker\FromOptions;
 
-final class File implements ResultNode, FromOptions<FileOptions>
+final class File extends CoverageNode implements ResultNode, FromOptions<FileOptions>
 {
 
-    use CoverageCalculatable;
-    use VisitorAcceptable;
-
     public function __construct(
-        private string $name,
-        private ImmMap<string, Coverage> $result
+        string $name,
+        ImmMap<string, Coverage> $result
     )
     {
+        $this->name = $name;
+        $this->result = $result;
+        $this->calculate($result);
     }
 
     public function name() : string
