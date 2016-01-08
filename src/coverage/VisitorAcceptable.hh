@@ -14,11 +14,11 @@ namespace hhpack\typechecker\coverage;
 use hhpack\typechecker\Visitor;
 use hhpack\typechecker\VisitorAcceptable as NodeVisitorAcceptable;
 
-trait VisitorAcceptable implements NodeVisitorAcceptable<CoverageNode>
+trait VisitorAcceptable implements NodeVisitorAcceptable<ResultNode>
 {
-    require implements CoverageNode;
+    require implements ResultNode;
 
-    public function accept(Visitor<CoverageNode> $visitor) : void
+    public function accept(Visitor<ResultNode> $visitor) : void
     {
         $visitor->visit($this);
     }

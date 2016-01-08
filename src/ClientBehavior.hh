@@ -12,7 +12,7 @@
 namespace hhpack\typechecker;
 
 use hhpack\typechecker\check\Result;
-use hhpack\typechecker\coverage\CoverageNode;
+use hhpack\typechecker\coverage\ResultNode;
 
 interface ClientBehavior
 {
@@ -22,5 +22,5 @@ interface ClientBehavior
     public function stop() : Awaitable<void>;
     public function restart() : Awaitable<void>;
     public function check() : Awaitable<Result>;
-    public function coverage() : Awaitable<CoverageNode>;
+    public function coverage() : Awaitable<ResultNode>;
 }

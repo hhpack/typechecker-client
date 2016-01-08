@@ -6,7 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use hhpack\typechecker\Visitor;
 use hhpack\typechecker\TypeCheckerClient;
-use hhpack\typechecker\coverage\CoverageNode;
+use hhpack\typechecker\coverage\ResultNode;
 
 async function coverage_main(string $cwd) : Awaitable<void>
 {
@@ -21,12 +21,12 @@ async function coverage_main(string $cwd) : Awaitable<void>
     };
 }
 
-final class ReportVisitor implements Visitor<CoverageNode>
+final class ReportVisitor implements Visitor<ResultNode>
 {
 
     private int $indent = 0;
 
-    public function visit(CoverageNode $node) : void
+    public function visit(ResultNode $node) : void
     {
         echo str_pad(" ", $this->indent * 2), $node->name(), " - ", $node->parsentage(), PHP_EOL;
 

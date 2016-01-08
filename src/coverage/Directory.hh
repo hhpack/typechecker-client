@@ -14,7 +14,7 @@ namespace hhpack\typechecker\coverage;
 use hhpack\typechecker\Visitor;
 use hhpack\typechecker\FromOptions;
 
-final class Directory implements CoverageNode, FromOptions<DirectoryOptions>
+final class Directory implements ResultNode, FromOptions<DirectoryOptions>
 {
 
     use CoverageCalculatable;
@@ -23,7 +23,7 @@ final class Directory implements CoverageNode, FromOptions<DirectoryOptions>
     public function __construct(
         private string $name,
         private ImmMap<string, Coverage> $result,
-        private ImmMap<string, CoverageNode> $children
+        private ImmMap<string, ResultNode> $children
     )
     {
         $this->calculate($result);
@@ -39,7 +39,7 @@ final class Directory implements CoverageNode, FromOptions<DirectoryOptions>
         return $this->children->isEmpty() === false;
     }
 
-    public function children() : ImmMap<string, CoverageNode>
+    public function children() : ImmMap<string, ResultNode>
     {
         return $this->children;
     }

@@ -14,10 +14,10 @@ namespace hhpack\typechecker\coverage;
 use hhpack\typechecker\JSONDecoder;
 use RuntimeException;
 
-final class CoverageReportDecoder implements JSONDecoder<CoverageNode>
+final class CoverageReportDecoder implements JSONDecoder<ResultNode>
 {
 
-    public function decode(string $json) : CoverageNode
+    public function decode(string $json) : ResultNode
     {
         $cleanContent = preg_replace('/^([^\{]+)|([^\}]+)$/', "", $json);
         $object = new Map(json_decode(trim($cleanContent), true));
@@ -29,7 +29,7 @@ final class CoverageReportDecoder implements JSONDecoder<CoverageNode>
         return $this->decodeNode($object->toArray());
     }
 
-    public function decodeFile(string $jsonFile) : CoverageNode
+    public function decodeFile(string $jsonFile) : ResultNode
     {
         if (!is_readable($jsonFile)) {
             throw new RuntimeException(sprintf('File %s is not a readable file', $jsonFile));
@@ -39,7 +39,7 @@ final class CoverageReportDecoder implements JSONDecoder<CoverageNode>
         return $this->decode($content);
     }
 
-    public function decodeNode(KeyedTraversable<string, mixed> $json) : CoverageNode
+    public function decodeNode(KeyedTraversable<string, mixed> $json) : ResultNode
     {
         $object = new ImmMap($json);
 
@@ -96,7 +96,7 @@ final class CoverageReportDecoder implements JSONDecoder<CoverageNode>
         return $children->toImmMap();
     }
 
-    public function decodeChildren(KeyedTraversable<string, mixed> $json) : ImmMap<string, CoverageNode>
+    public function decodeChildren(KeyedTraversable<string, mixed> $json) : ImmMap<string, ResultNode>
     {
         $children = Map {};
 

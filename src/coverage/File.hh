@@ -14,7 +14,7 @@ namespace hhpack\typechecker\coverage;
 use hhpack\typechecker\Visitor;
 use hhpack\typechecker\FromOptions;
 
-final class File implements CoverageNode, FromOptions<FileOptions>
+final class File implements ResultNode, FromOptions<FileOptions>
 {
 
     use CoverageCalculatable;
@@ -37,7 +37,7 @@ final class File implements CoverageNode, FromOptions<FileOptions>
         return false;
     }
 
-    public function children() : ImmMap<string, CoverageNode>
+    public function children() : ImmMap<string, ResultNode>
     {
         return ImmMap {};
     }

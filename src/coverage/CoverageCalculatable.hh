@@ -14,7 +14,7 @@ namespace hhpack\typechecker\coverage;
 trait CoverageCalculatable
 {
 
-    require implements CoverageNode;
+    require implements ResultNode;
 
     private int $checked = 0;
     private int $partial = 0;
