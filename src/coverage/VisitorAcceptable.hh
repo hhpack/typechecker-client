@@ -12,9 +12,9 @@
 namespace hhpack\typechecker\coverage;
 
 use hhpack\typechecker\Visitor;
-use hhpack\typechecker\FromOptions;
+use hhpack\typechecker\VisitorAcceptable as NodeVisitorAcceptable;
 
-trait VisitorAcceptable
+trait VisitorAcceptable implements NodeVisitorAcceptable<CoverageNode>
 {
     require implements CoverageNode;
 

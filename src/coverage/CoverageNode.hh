@@ -12,8 +12,9 @@
 namespace hhpack\typechecker\coverage;
 
 use hhpack\typechecker\Visitor;
+use hhpack\typechecker\VisitorAcceptable;
 
-interface CoverageNode
+interface CoverageNode extends VisitorAcceptable<CoverageNode>
 {
     public function name() : string;
     public function parsentage() : float;
@@ -23,5 +24,4 @@ interface CoverageNode
     public function total() : int;
     public function hasChildren() : bool;
     public function children() : ImmMap<string, CoverageNode>;
-    public function accept(Visitor<CoverageNode> $visitor) : void;
 }
