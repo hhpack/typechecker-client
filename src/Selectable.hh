@@ -13,5 +13,5 @@ namespace hhpack\typechecker;
 
 interface Selectable<T>
 {
-    public function select((function(T) : T) $node) : T;
+    public function select((function(T) : Iterator<T>) $node) : Iterator<T>;
 }

@@ -79,7 +79,7 @@ abstract class CoverageNode implements ResultNode, VisitorAcceptable<ResultNode>
         $visitor->visit($this);
     }
 
-    public function select((function(ResultNode) : ResultNode) $selector) : ResultNode
+    public function select((function(ResultNode) : Iterator<ResultNode>) $selector) : Iterator<ResultNode>
     {
         return $selector($this);
     }
