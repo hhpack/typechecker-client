@@ -36,6 +36,7 @@ API of Client
 * **stop** - stops a hack server
 * **restart** - restarts a hack server
 * **check** - return result of type check
+* **coverage** - return result of coverage
 
 Run the test
 ----------------------------------------
