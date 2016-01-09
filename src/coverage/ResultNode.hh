@@ -13,8 +13,9 @@ namespace hhpack\typechecker\coverage;
 
 use hhpack\typechecker\Visitor;
 use hhpack\typechecker\VisitorAcceptable;
+use hhpack\typechecker\Selectable;
 
-interface ResultNode extends VisitorAcceptable<ResultNode>
+interface ResultNode extends VisitorAcceptable<ResultNode>, Selectable<ResultNode>
 {
     public function name() : string;
     public function result() : ImmMap<string, Coverage>;

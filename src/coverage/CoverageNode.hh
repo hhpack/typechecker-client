@@ -15,7 +15,7 @@ use hhpack\typechecker\Visitor;
 use hhpack\typechecker\VisitorAcceptable;
 use hhpack\typechecker\Selectable;
 
-abstract class CoverageNode implements ResultNode, VisitorAcceptable<ResultNode>, Selectable<ResultNode>
+abstract class CoverageNode implements ResultNode
 {
 
     protected string $name;
