@@ -10,6 +10,7 @@ use hhpack\typechecker\coverage\File;
 use hhpack\typechecker\coverage\Directory;
 use hhpack\typechecker\coverage\ResultNode;
 use hhpack\typechecker\coverage\FileSelector;
+use hhpack\typechecker\coverage\DirectorySelector;
 
 async function coverage_select_main(string $cwd) : Awaitable<void>
 {
@@ -23,6 +24,14 @@ async function coverage_select_main(string $cwd) : Awaitable<void>
         $formattedParsentage = sprintf('%6.2f%%', (float) $file->parsentage() * 100); 
         echo $formattedParsentage, ' ', $file->name(), PHP_EOL;
     }
+
+    $directories = $result->select(new DirectorySelector());
+
+    foreach ($directories as $directory) {
+        $formattedParsentage = sprintf('%6.2f%%', (float) $directory->parsentage() * 100); 
+        echo $formattedParsentage, ' ', $directory->name(), PHP_EOL;
+    }
+
 }
 
 coverage_select_main(realpath(__DIR__ . '/../'));
