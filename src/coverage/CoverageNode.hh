@@ -13,7 +13,7 @@ namespace hhpack\typechecker\coverage;
 
 use hhpack\typechecker\Visitor;
 use hhpack\typechecker\VisitorAcceptable;
-use hhpack\typechecker\Selectable;
+use hhpack\typechecker\Selector;
 
 abstract class CoverageNode implements ResultNode
 {
@@ -79,9 +79,9 @@ abstract class CoverageNode implements ResultNode
         $visitor->visit($this);
     }
 
-    public function select((function(ResultNode) : Iterator<ResultNode>) $selector) : Iterator<ResultNode>
+    public function select(Selector<ResultNode> $selector) : Iterator<ResultNode>
     {
-        return $selector($this);
+        return $selector->select($this);
     }
 
 }
