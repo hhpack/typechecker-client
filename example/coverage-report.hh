@@ -9,8 +9,6 @@ use hhpack\typechecker\TypeCheckerClient;
 use hhpack\typechecker\coverage\File;
 use hhpack\typechecker\coverage\Directory;
 use hhpack\typechecker\coverage\ResultNode;
-use hhpack\typechecker\coverage\FileSelector;
-use hhpack\typechecker\coverage\DirectorySelector;
 
 async function coverage_select_main(string $cwd) : Awaitable<void>
 {
