@@ -12,9 +12,10 @@
 namespace hhpack\typechecker\check;
 
 use hhpack\typechecker\JSONResult;
+use hhpack\typechecker\Selectable;
 use hhpack\typechecker\FromOptions;
 
-final class Result implements ResultNode, FromOptions<ResultOptions>
+final class Result implements ResultNode, FromOptions<ResultOptions>, Selectable<Error>
 {
 
     private ImmVector<Error> $errors;
@@ -44,9 +45,9 @@ final class Result implements ResultNode, FromOptions<ResultOptions>
         return $this->version;
     }
 
-    public function errors() : KeyedIterator<int, Error>
+    public function errors() : ImmVector<Error>
     {
-        return $this->errors->lazy()->getIterator();
+        return $this->errors;
     }
 
     public function errorCount() : int
@@ -57,6 +58,16 @@ final class Result implements ResultNode, FromOptions<ResultOptions>
     public function hasErrors() : bool
     {
         return $this->errors->isEmpty() === false;
+    }
+
+    public function filter((function(Error):bool) $selector) : Iterator<Error>
+    {
+        foreach ($this->errors as $error) {
+            if (!$selector($error)) {
+                continue;
+            }
+            yield $error;
+        }
     }
 
     public static function fromOptions(ResultOptions $options) : this

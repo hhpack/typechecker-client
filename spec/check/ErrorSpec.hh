@@ -7,20 +7,22 @@ use hhpack\typechecker\check\Error;
 describe(Error::class, function() {
   beforeEach(function() {
     $this->error = Error::fromOptions(shape(
-      'message' => shape(
-        'code' => 2055,
-        'descr' => "error message",
-        'path' => "/foo/var/example.hh",
-        'line' => 38,
-        'end' => 26,
-        'start' => 26
-      )
+      'message' => [
+        shape(
+          'code' => 2055,
+          'descr' => "error message",
+          'path' => "/foo/var/example.hh",
+          'line' => 38,
+          'end' => 26,
+          'start' => 26
+        )
+      ]
     ));
   });
   describe('#messages', function() {
     it('return messages', function() {
       $messages = $this->error->messages();
-      expect(count($messages))->toBe(1);
+      expect($messages->count())->toBe(1);
     });
   });
   describe('#hasMessages', function() {
