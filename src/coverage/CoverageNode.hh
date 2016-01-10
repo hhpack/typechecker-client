@@ -79,9 +79,30 @@ abstract class CoverageNode implements ResultNode
         $visitor->visit($this);
     }
 
-    public function select(Selector<ResultNode> $selector) : Iterator<ResultNode>
+    public function items() : Iterator<ResultNode>
     {
-        return $selector->select($this);
+        return $this->walk($this);
+    }
+
+    protected function walk(ResultNode $node) : Iterator<ResultNode>
+    {
+        yield $node;
+
+        foreach ($node->children()->lazy() as $_ => $childNode) {
+            foreach ($this->walk($childNode) as $node) {
+                yield $node;
+            }
+        }
+    }
+
+    public function filter((function(ResultNode):bool) $selector) : Iterator<ResultNode>
+    {
+        foreach ($this->items() as $item) {
+            if (!$selector($item)) {
+                continue;
+            }
+            yield $item;
+        }
     }
 
 }

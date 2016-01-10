@@ -26,4 +26,5 @@ interface ResultNode extends VisitorAcceptable<ResultNode>, Selectable<ResultNod
     public function parsentage() : float;
     public function hasChildren() : bool;
     public function children() : ImmMap<string, ResultNode>;
+    public function items() : Iterator<ResultNode>;
 }
