@@ -16,8 +16,8 @@ use hhpack\typechecker\coverage\ResultNode;
 
 interface ClientBehavior
 {
-    public function version() : Awaitable<Version>;
-    public function init() : Awaitable<ConfigurationPath>;
+    public function version() : Awaitable<version>;
+    public function init() : Awaitable<configurationPath>;
     public function start() : Awaitable<void>;
     public function stop() : Awaitable<void>;
     public function restart() : Awaitable<void>;

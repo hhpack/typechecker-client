@@ -17,23 +17,23 @@ final class FilePosition
 {
 
     public function __construct(
-        private LineNumber $lineNumber,
+        private int $lineNumber,
         private IntegerRange $columnRange
     )
     {
     }
 
-    public function getLineNumber() : LineNumber
+    public function getLineNumber() : int
     {
         return $this->lineNumber;
     }
 
-    public function getStartColumnNumber() : ColumnNumber
+    public function getStartColumnNumber() : int
     {
         return $this->columnRange->first();
     }
 
-    public function getEndColumnNumber() : ColumnNumber
+    public function getEndColumnNumber() : int
     {
         return $this->columnRange->last();
     }

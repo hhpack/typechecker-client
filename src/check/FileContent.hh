@@ -24,22 +24,22 @@ final class FileContent
         $this->lines = ImmVector::fromItems(explode(PHP_EOL, rtrim($content)));
     }
 
-    public function getStartLineNumber() : LineNumber
+    public function getStartLineNumber() : int
     {
         return 1;
     }
 
-    public function getEndLineNumber() : LineNumber
+    public function getEndLineNumber() : int
     {
         return $this->lines->count();
     }
 
-    public function getLineCode(LineNumber $lineAt) : string
+    public function getLineCode(int $lineAt) : string
     {
         return $this->lines->at($lineAt - 1);
     }
 
-    public function getLineCodes() : KeyedIterator<LineNumber, string>
+    public function getLineCodes() : KeyedIterator<int, string>
     {
         foreach ($this->lines->lazy() as $lineAt => $line) {
             yield $lineAt + 1 => $line;
@@ -51,7 +51,7 @@ final class FileContent
         return $this->lines->count();
     }
 
-    public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>
+    public function getLineCodesByRange(LineRange $range) : KeyedIterator<int, string>
     {
         $endAt = $range->last();
 

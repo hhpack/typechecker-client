@@ -31,7 +31,7 @@ final class TypeCheckerClient implements ClientBehavior
     {
     }
 
-    public async function version() : Awaitable<Version>
+    public async function version() : Awaitable<version>
     {
         $options = new ExecOptions($this->cwd);
 
@@ -41,7 +41,7 @@ final class TypeCheckerClient implements ClientBehavior
         return trim($version);
     }
 
-    public async function init() : Awaitable<ConfigurationPath>
+    public async function init() : Awaitable<configurationPath>
     {
         $path = realpath($this->cwd) . '/.hhconfig';
 

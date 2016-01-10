@@ -40,17 +40,17 @@ final class Message implements ResultNode, FromOptions<MessageOptions>
         return $this->file->getPath();
     }
 
-    public function getLineNumber() : LineNumber
+    public function getLineNumber() : int
     {
         return $this->file->getLineNumber();
     }
 
-    public function getStartColumnNumber() : ColumnNumber
+    public function getStartColumnNumber() : int
     {
         return $this->file->getStartColumnNumber();
     }
 
-    public function getEndColumnNumber() : ColumnNumber
+    public function getEndColumnNumber() : int
     {
         return $this->file->getEndColumnNumber();
     }
@@ -60,7 +60,7 @@ final class Message implements ResultNode, FromOptions<MessageOptions>
         return $this->file->getLineCode( $this->getLineNumber() );
     }
 
-    public function getDetailCodes() : KeyedIterator<LineNumber, string>
+    public function getDetailCodes() : KeyedIterator<int, string>
     {
         $lineAt = $this->getLineNumber();
 

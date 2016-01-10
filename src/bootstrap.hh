@@ -11,35 +11,31 @@
 
 namespace hhpack\typechecker
 {
-    type Version = string;
-    type ConfigurationPath = string;
+    type version = string;
+    type configurationPath = string;
 }
 
 namespace hhpack\typechecker\check
 {
     use hhpack\typechecker\range\IntegerRange;
 
-    type Version = string;
-    type LineNumber = int;
-    type ColumnNumber = int;
-    type ErrorCode = int;
-
+    type version = string;
     type LineRange = IntegerRange;
 
     type MessageOptions = shape(
         'descr' => string,
         'path' => string,
-        'line' => LineNumber,
-        'start' => ColumnNumber,
-        'end' => ColumnNumber,
-        'code' => ErrorCode
+        'line' => int,
+        'start' => int,
+        'end' => int,
+        'code' => int
     );
     type ErrorOptions = shape(
         'message' => array<MessageOptions>
     );
     type ResultOptions = shape(
         'passed' => bool,
-        'version' => Version,
+        'version' => version,
         'errors' => array<ErrorOptions>
     );
 }

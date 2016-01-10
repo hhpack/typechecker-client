@@ -27,32 +27,32 @@ final class File
         return $this->path;
     }
 
-    public function getLineNumber() : LineNumber
+    public function getLineNumber() : int
     {
         return $this->position->getLineNumber();
     }
 
-    public function getStartColumnNumber() : ColumnNumber
+    public function getStartColumnNumber() : int
     {
         return $this->position->getStartColumnNumber();
     }
 
-    public function getEndColumnNumber() : ColumnNumber
+    public function getEndColumnNumber() : int
     {
         return $this->position->getEndColumnNumber();
     }
 
-    public function getLineCode(LineNumber $lineAt) : string
+    public function getLineCode(int $lineAt) : string
     {
         return $this->readContent()->getLineCode($lineAt);
     }
 
-    public function getLineCodes() : KeyedIterator<LineNumber, string>
+    public function getLineCodes() : KeyedIterator<int, string>
     {
         return $this->readContent()->getLineCodes();
     }
 
-    public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>
+    public function getLineCodesByRange(LineRange $range) : KeyedIterator<int, string>
     {
         return $this->readContent()->getLineCodesByRange($range);
     }

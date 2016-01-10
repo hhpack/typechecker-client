@@ -22,7 +22,7 @@ final class Result implements ResultNode, FromOptions<ResultOptions>
     public function __construct
     (
         private bool $passed,
-        private Version $version,
+        private version $version,
         Traversable<Error> $errors
     )
     {
@@ -39,7 +39,7 @@ final class Result implements ResultNode, FromOptions<ResultOptions>
         return $this->isOk() === false;
     }
 
-    public function getVersion() : Version
+    public function getVersion() : version
     {
         return $this->version;
     }
