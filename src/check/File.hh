@@ -22,50 +22,50 @@ final class File
     {
     }
 
-    public function getPath() : string
+    public function path() : string
     {
         return $this->path;
     }
 
-    public function getLineNumber() : int
+    public function lineNumber() : int
     {
-        return $this->position->getLineNumber();
+        return $this->position->lineNumber();
     }
 
-    public function getStartColumnNumber() : int
+    public function startColumnNumber() : int
     {
-        return $this->position->getStartColumnNumber();
+        return $this->position->startColumnNumber();
     }
 
-    public function getEndColumnNumber() : int
+    public function endColumnNumber() : int
     {
-        return $this->position->getEndColumnNumber();
+        return $this->position->endColumnNumber();
     }
 
-    public function getLineCode(int $lineAt) : string
+    public function lineCodeAt(int $lineAt) : string
     {
-        return $this->readContent()->getLineCode($lineAt);
+        return $this->readContent()->lineCodeAt($lineAt);
     }
 
-    public function getLineCodes() : KeyedIterator<int, string>
+    public function lineCodes() : KeyedIterator<int, string>
     {
-        return $this->readContent()->getLineCodes();
+        return $this->readContent()->lineCodes();
     }
 
-    public function getLineCodesByRange(LineRange $range) : KeyedIterator<int, string>
+    public function lineCodesByRange(LineRange $range) : KeyedIterator<int, string>
     {
-        return $this->readContent()->getLineCodesByRange($range);
+        return $this->readContent()->lineCodesByRange($range);
     }
 
-    public function getTotalLineCount() : int
+    public function totalLineCount() : int
     {
-        return $this->readContent()->getTotalLineCount();
+        return $this->readContent()->totalLineCount();
     }
 
     <<__Memoize>>
     private function readContent() : FileContent
     {
-        $content = file_get_contents($this->getPath());
+        $content = file_get_contents($this->path());
         return new FileContent($content);
     }
 

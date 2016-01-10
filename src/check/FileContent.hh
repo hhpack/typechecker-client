@@ -24,34 +24,34 @@ final class FileContent
         $this->lines = ImmVector::fromItems(explode(PHP_EOL, rtrim($content)));
     }
 
-    public function getStartLineNumber() : int
+    public function startLineNumber() : int
     {
         return 1;
     }
 
-    public function getEndLineNumber() : int
+    public function endLineNumber() : int
     {
         return $this->lines->count();
     }
 
-    public function getLineCode(int $lineAt) : string
+    public function lineCodeAt(int $lineAt) : string
     {
         return $this->lines->at($lineAt - 1);
     }
 
-    public function getLineCodes() : KeyedIterator<int, string>
+    public function lineCodes() : KeyedIterator<int, string>
     {
         foreach ($this->lines->lazy() as $lineAt => $line) {
             yield $lineAt + 1 => $line;
         }
     }
 
-    public function getTotalLineCount() : int
+    public function totalLineCount() : int
     {
         return $this->lines->count();
     }
 
-    public function getLineCodesByRange(LineRange $range) : KeyedIterator<int, string>
+    public function lineCodesByRange(LineRange $range) : KeyedIterator<int, string>
     {
         $endAt = $range->last();
 

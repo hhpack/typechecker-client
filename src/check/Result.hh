@@ -39,17 +39,17 @@ final class Result implements ResultNode, FromOptions<ResultOptions>
         return $this->isOk() === false;
     }
 
-    public function getVersion() : version
+    public function version() : version
     {
         return $this->version;
     }
 
-    public function getErrors() : KeyedIterator<int, Error>
+    public function errors() : KeyedIterator<int, Error>
     {
         return $this->errors->lazy()->getIterator();
     }
 
-    public function getErrorCount() : int
+    public function errorCount() : int
     {
         return $this->errors->count();
     }

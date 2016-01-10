@@ -35,48 +35,48 @@ final class Message implements ResultNode, FromOptions<MessageOptions>
         return $this->description;
     }
 
-    public function getPath() : string
+    public function path() : string
     {
-        return $this->file->getPath();
+        return $this->file->path();
     }
 
-    public function getLineNumber() : int
+    public function lineNumber() : int
     {
-        return $this->file->getLineNumber();
+        return $this->file->lineNumber();
     }
 
-    public function getStartColumnNumber() : int
+    public function startColumnNumber() : int
     {
-        return $this->file->getStartColumnNumber();
+        return $this->file->startColumnNumber();
     }
 
-    public function getEndColumnNumber() : int
+    public function endColumnNumber() : int
     {
-        return $this->file->getEndColumnNumber();
+        return $this->file->endColumnNumber();
     }
 
-    public function getLineCode() : string
+    public function lineCode() : string
     {
-        return $this->file->getLineCode( $this->getLineNumber() );
+        return $this->file->lineCodeAt( $this->lineNumber() );
     }
 
-    public function getDetailCodes() : KeyedIterator<int, string>
+    public function detailCodes() : KeyedIterator<int, string>
     {
-        $lineAt = $this->getLineNumber();
+        $lineAt = $this->lineNumber();
 
         $startLineAt = $lineAt - 2;
         $startLineAt = ($startLineAt <= 0) ? 1 : $startLineAt;
 
         $endLineAt = $lineAt + 2;
-        $endLineAt = ($this->file->getTotalLineCount() <= $endLineAt)
-            ? $this->file->getTotalLineCount() : $endLineAt;
+        $endLineAt = ($this->file->totalLineCount() <= $endLineAt)
+            ? $this->file->totalLineCount() : $endLineAt;
 
         $range = IntegerRange::between(
             $startLineAt,
             $endLineAt
         );
 
-        return $this->file->getLineCodesByRange($range);
+        return $this->file->lineCodesByRange($range);
     }
 
     public static function fromOptions(MessageOptions $options) : this
