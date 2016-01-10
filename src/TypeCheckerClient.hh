@@ -84,7 +84,7 @@ final class TypeCheckerClient implements ClientBehavior
 
         $result = await process\exec($cmd, $options);
 
-        $decoder = new CoverageReportDecoder();
+        $decoder = new CoverageReportDecoder($this->cwd);
         return $decoder->decode((string) $result->stdout());
     }
 

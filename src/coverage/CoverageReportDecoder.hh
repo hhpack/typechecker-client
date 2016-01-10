@@ -19,7 +19,9 @@ final class CoverageReportDecoder implements JSONDecoder<ResultNode>
 
     private CurrentPath $path;
 
-    public function __construct()
+    public function __construct(
+        private string $cwd
+    )
     {
         $this->path = new CurrentPath();
     }
@@ -30,7 +32,7 @@ final class CoverageReportDecoder implements JSONDecoder<ResultNode>
         $object = new Map(json_decode(trim($cleanContent), true));
 
         if (!$object->containsKey('name')) {
-            $object->set('name', 'root');
+            $object->set('name', $this->cwd);
         }
 
         $this->path->moveTo( (string) $object->at('name') );
