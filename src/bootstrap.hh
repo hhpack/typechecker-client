@@ -20,11 +20,6 @@ namespace hhpack\typechecker\check
     use hhpack\typechecker\range\IntegerRange;
 
     type Version = string;
-    type Errors = Traversable<Error>;
-    type ImmutableErrors = ImmVector<Error>;
-    type Messages = Traversable<Message>;
-    type ImmutableMessages = ImmVector<Message>;
-    type Path = string;
     type LineNumber = int;
     type ColumnNumber = int;
     type ErrorCode = int;
@@ -33,7 +28,7 @@ namespace hhpack\typechecker\check
 
     type MessageOptions = shape(
         'descr' => string,
-        'path' => Path,
+        'path' => string,
         'line' => LineNumber,
         'start' => ColumnNumber,
         'end' => ColumnNumber,

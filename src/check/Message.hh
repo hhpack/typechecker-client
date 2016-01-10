@@ -35,7 +35,7 @@ final class Message implements ResultNode, FromOptions<MessageOptions>
         return $this->description;
     }
 
-    public function getPath() : Path
+    public function getPath() : string
     {
         return $this->file->getPath();
     }

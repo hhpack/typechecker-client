@@ -16,13 +16,13 @@ final class File
 
     public function __construct
     (
-        private Path $path,
+        private string $path,
         private FilePosition $position
     )
     {
     }
 
-    public function getPath() : Path
+    public function getPath() : string
     {
         return $this->path;
     }

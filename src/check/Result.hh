@@ -17,13 +17,13 @@ use hhpack\typechecker\FromOptions;
 final class Result implements ResultNode, FromOptions<ResultOptions>
 {
 
-    private ImmutableErrors $errors;
+    private ImmVector<Error> $errors;
 
     public function __construct
     (
         private bool $passed,
         private Version $version,
-        Errors $errors
+        Traversable<Error> $errors
     )
     {
         $this->errors = new ImmVector($errors);
