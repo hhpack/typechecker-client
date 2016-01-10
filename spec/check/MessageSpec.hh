@@ -73,7 +73,6 @@ describe(Message::class, function() {
       it('return detail code', function() {
         $lines = $this->message->getDetailCodes();
 
-        $lines->next();
         expect($lines->key())->toBe(7);
         expect($lines->current())->toBe('    {');
 
@@ -107,7 +106,6 @@ describe(Message::class, function() {
       it('return detail code', function() {
         $lines = $this->message->getDetailCodes();
 
-        $lines->next();
         expect($lines->key())->toBe(1);
         expect($lines->current())->toBe('<?hh //strict');
 

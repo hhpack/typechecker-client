@@ -12,6 +12,8 @@
 namespace hhpack\typechecker;
 
 use hhpack\typechecker\check\Result;
+use hhpack\typechecker\coverage\ResultNode;
+use hhpack\typechecker\coverage\CoverageReportDecoder;
 use hhpack\process;
 use hhpack\process\ExecOptions;
 use RuntimeException;
@@ -73,6 +75,17 @@ final class TypeCheckerClient implements ClientBehavior
 
         $result = await process\exec( $this->command('check', [ '--json' ]), $options);
         return Result::fromString((string) $result->stderr());
+    }
+
+    public async function coverage() : Awaitable<ResultNode>
+    {
+        $options = new ExecOptions($this->cwd);
+        $cmd = $this->command('check', [ '--json', '--coverage', $this->cwd ]);
+
+        $result = await process\exec($cmd, $options);
+
+        $decoder = new CoverageReportDecoder($this->cwd);
+        return $decoder->decode((string) $result->stdout());
     }
 
     private function command(string $command, Traversable<string> $args = []) : string

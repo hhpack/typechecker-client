@@ -1,0 +1,330 @@
+{
+	"type": "directory",
+	"result": {
+		"obj_get": {
+			"checked": 43,
+			"partial": 0,
+			"unchecked": 0
+		},
+		"new": {
+			"checked": 15,
+			"partial": 5,
+			"unchecked": 0
+		},
+		"lvar": {
+			"checked": 74,
+			"partial": 5,
+			"unchecked": 5
+		},
+		"class_const": {
+			"checked": 1,
+			"partial": 0,
+			"unchecked": 0
+		},
+		"call": {
+			"checked": 70,
+			"partial": 0,
+			"unchecked": 22
+		},
+		"array_get": {
+			"checked": 10,
+			"partial": 0,
+			"unchecked": 0
+		}
+	},
+	"children": {
+		"range": {
+			"type": "directory",
+			"result": {
+				"obj_get": {
+					"checked": 8,
+					"partial": 0,
+					"unchecked": 0
+				},
+				"new": {
+					"checked": 5,
+					"partial": 0,
+					"unchecked": 0
+				},
+				"lvar": {
+					"checked": 10,
+					"partial": 0,
+					"unchecked": 0
+				},
+				"call": {
+					"checked": 13,
+					"partial": 0,
+					"unchecked": 3
+				}
+			},
+			"children": {
+				"LessThanException.hh": {
+					"type": "file",
+					"result": {}
+				},
+				"IntegerRange.hh": {
+					"type": "file",
+					"result": {
+						"obj_get": {
+							"checked": 8,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"new": {
+							"checked": 5,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"lvar": {
+							"checked": 10,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"call": {
+							"checked": 13,
+							"partial": 0,
+							"unchecked": 3
+						}
+					}
+				}
+			}
+		},
+		"check": {
+			"type": "directory",
+			"result": {
+				"obj_get": {
+					"checked": 29,
+					"partial": 0,
+					"unchecked": 0
+				},
+				"new": {
+					"checked": 9,
+					"partial": 0,
+					"unchecked": 0
+				},
+				"lvar": {
+					"checked": 55,
+					"partial": 0,
+					"unchecked": 3
+				},
+				"call": {
+					"checked": 48,
+					"partial": 0,
+					"unchecked": 6
+				},
+				"array_get": {
+					"checked": 10,
+					"partial": 0,
+					"unchecked": 0
+				}
+			},
+			"children": {
+				"Result.hh": {
+					"type": "file",
+					"result": {
+						"obj_get": {
+							"checked": 5,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"new": {
+							"checked": 2,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"lvar": {
+							"checked": 11,
+							"partial": 0,
+							"unchecked": 2
+						},
+						"call": {
+							"checked": 9,
+							"partial": 0,
+							"unchecked": 3
+						},
+						"array_get": {
+							"checked": 3,
+							"partial": 0,
+							"unchecked": 0
+						}
+					}
+				},
+				"Message.hh": {
+					"type": "file",
+					"result": {
+						"obj_get": {
+							"checked": 10,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"new": {
+							"checked": 4,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"lvar": {
+							"checked": 21,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"call": {
+							"checked": 11,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"array_get": {
+							"checked": 6,
+							"partial": 0,
+							"unchecked": 0
+						}
+					}
+				},
+				"FilePosition.hh": {
+					"type": "file",
+					"result": {
+						"obj_get": {
+							"checked": 3,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"lvar": {
+							"checked": 2,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"call": {
+							"checked": 2,
+							"partial": 0,
+							"unchecked": 0
+						}
+					}
+				},
+				"FileContent.hh": {
+					"type": "file",
+					"result": {
+						"obj_get": {
+							"checked": 5,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"lvar": {
+							"checked": 11,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"call": {
+							"checked": 8,
+							"partial": 0,
+							"unchecked": 2
+						}
+					}
+				},
+				"File.hh": {
+					"type": "file",
+					"result": {
+						"obj_get": {
+							"checked": 4,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"new": {
+							"checked": 1,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"lvar": {
+							"checked": 4,
+							"partial": 0,
+							"unchecked": 1
+						},
+						"call": {
+							"checked": 12,
+							"partial": 0,
+							"unchecked": 1
+						}
+					}
+				},
+				"Error.hh": {
+					"type": "file",
+					"result": {
+						"obj_get": {
+							"checked": 2,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"new": {
+							"checked": 2,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"lvar": {
+							"checked": 6,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"call": {
+							"checked": 6,
+							"partial": 0,
+							"unchecked": 0
+						},
+						"array_get": {
+							"checked": 1,
+							"partial": 0,
+							"unchecked": 0
+						}
+					}
+				}
+			}
+		},
+		"bootstrap.hh": {
+			"type": "file",
+			"result": {}
+		},
+		"TypeCheckerClient.hh": {
+			"type": "file",
+			"result": {
+				"obj_get": {
+					"checked": 6,
+					"partial": 0,
+					"unchecked": 0
+				},
+				"new": {
+					"checked": 1,
+					"partial": 5,
+					"unchecked": 0
+				},
+				"lvar": {
+					"checked": 9,
+					"partial": 5,
+					"unchecked": 2
+				},
+				"class_const": {
+					"checked": 1,
+					"partial": 0,
+					"unchecked": 0
+				},
+				"call": {
+					"checked": 9,
+					"partial": 0,
+					"unchecked": 13
+				}
+			}
+		},
+		"Range.hh": {
+			"type": "file",
+			"result": {}
+		},
+		"Node.hh": {
+			"type": "file",
+			"result": {}
+		},
+		"JSONResult.hh": {
+			"type": "file",
+			"result": {}
+		},
+		"ClientBehavior.hh": {
+			"type": "file",
+			"result": {}
+		}
+	}
+}
