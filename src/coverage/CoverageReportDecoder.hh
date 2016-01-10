@@ -17,6 +17,13 @@ use RuntimeException;
 final class CoverageReportDecoder implements JSONDecoder<ResultNode>
 {
 
+    private CurrentPath $path;
+
+    public function __construct()
+    {
+        $this->path = new CurrentPath();
+    }
+
     public function decode(string $json) : ResultNode
     {
         $cleanContent = preg_replace('/^([^\{]+)|([^\}]+)$/', "", $json);
@@ -25,6 +32,8 @@ final class CoverageReportDecoder implements JSONDecoder<ResultNode>
         if (!$object->containsKey('name')) {
             $object->set('name', 'root');
         }
+
+        $this->path->appendLast( (string) $object->at('name') );
 
         return $this->decodeNode($object->toArray());
     }
@@ -59,7 +68,7 @@ final class CoverageReportDecoder implements JSONDecoder<ResultNode>
         }
 
         $options = shape(
-            'name' => (string) $object->at('name'),
+            'name' => (string) $this->path,
             'result' => $coverage
         );
 
@@ -104,8 +113,10 @@ final class CoverageReportDecoder implements JSONDecoder<ResultNode>
             if (!is_array($values)) {
                 continue;
             }
+            $this->path->appendLast( $key );
             $values['name'] = $key;
             $children->set($key, $this->decodeNode($values));
+            $this->path->removeLast();
         }
 
         return $children->toImmMap();
