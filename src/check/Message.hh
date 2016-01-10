@@ -25,12 +25,12 @@ final class Message implements ResultNode, FromOptions<MessageOptions>
     {
     }
 
-    public function getCode() : int
+    public function code() : int
     {
         return $this->code;
     }
 
-    public function getDescription() : string
+    public function description() : string
     {
         return $this->description;
     }
