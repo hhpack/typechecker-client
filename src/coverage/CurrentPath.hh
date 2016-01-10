@@ -24,12 +24,12 @@ final class CurrentPath
         $this->pathSegments = Vector::fromItems($pathSegments);
     }
 
-    public function appendLast(string $pathSegment) : void
+    public function moveTo(string $pathSegment) : void
     {
         $this->pathSegments->add($pathSegment);
     }
 
-    public function removeLast() : void
+    public function leave() : void
     {
         $lastIndexAt = $this->pathSegments->count() - 1;
 

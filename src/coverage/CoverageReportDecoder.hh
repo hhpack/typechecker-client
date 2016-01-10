@@ -33,7 +33,7 @@ final class CoverageReportDecoder implements JSONDecoder<ResultNode>
             $object->set('name', 'root');
         }
 
-        $this->path->appendLast( (string) $object->at('name') );
+        $this->path->moveTo( (string) $object->at('name') );
 
         return $this->decodeNode($object->toArray());
     }
@@ -113,10 +113,10 @@ final class CoverageReportDecoder implements JSONDecoder<ResultNode>
             if (!is_array($values)) {
                 continue;
             }
-            $this->path->appendLast( $key );
+            $this->path->moveTo( $key );
             $values['name'] = $key;
             $children->set($key, $this->decodeNode($values));
-            $this->path->removeLast();
+            $this->path->leave();
         }
 
         return $children->toImmMap();
