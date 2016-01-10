@@ -27,6 +27,29 @@ if ($result->isPassed()) {
 }
 ```
 
+Type of coverage
+--------------------------------------
+
+Examples of the type of coverage will be as follows.
+
+```hack
+use hhpack\typechecker\TypeCheckerClient;
+use hhpack\typechecker\coverage\File;
+
+$client = new TypeCheckerClient(getcwd());
+await $client->restart();
+
+$result = await $client->coverage();
+$files = $result->filter(($item) ==> {
+    return $item instanceof File;
+});
+
+foreach ($files as $file) {
+    $formattedParsentage = sprintf('%6.2f%%', (float) $file->parsentage() * 100); 
+    echo $formattedParsentage, ' ', $file->name(), PHP_EOL;
+}
+```
+
 API of Client
 --------------------------------------
 
