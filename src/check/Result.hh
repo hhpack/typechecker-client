@@ -11,10 +11,10 @@
 
 namespace hhpack\typechecker\check;
 
-use hhpack\typechecker\Node;
 use hhpack\typechecker\JSONResult;
+use hhpack\typechecker\FromOptions;
 
-final class Result implements Node<ResultOptions>
+final class Result implements ResultNode, FromOptions<ResultOptions>
 {
 
     private ImmutableErrors $errors;

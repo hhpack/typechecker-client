@@ -9,9 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker;
+namespace hhpack\typechecker\check;
 
-interface Node<T>
+interface ResultNode
 {
-    public static function fromOptions(T $options) : this;
 }

@@ -11,10 +11,10 @@
 
 namespace hhpack\typechecker\check;
 
-use hhpack\typechecker\Node;
 use hhpack\typechecker\range\IntegerRange;
+use hhpack\typechecker\FromOptions;
 
-final class Message implements Node<MessageOptions>
+final class Message implements ResultNode, FromOptions<MessageOptions>
 {
 
     public function __construct(

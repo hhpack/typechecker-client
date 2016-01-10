@@ -11,10 +11,9 @@
 
 namespace hhpack\typechecker\check;
 
-use hhpack\typechecker\Node;
-use \stdClass;
+use hhpack\typechecker\FromOptions;
 
-final class Error implements Node<ErrorOptions>
+final class Error implements ResultNode, FromOptions<ErrorOptions>
 {
 
     private ImmutableMessages $messages;
