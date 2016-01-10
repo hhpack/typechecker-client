@@ -11,10 +11,10 @@
 
 namespace hhpack\typechecker\check;
 
-use hhpack\typechecker\Node;
 use hhpack\typechecker\range\IntegerRange;
+use hhpack\typechecker\FromOptions;
 
-final class Message implements Node<MessageOptions>
+final class Message implements ResultNode, FromOptions<MessageOptions>
 {
 
     public function __construct(
@@ -25,58 +25,58 @@ final class Message implements Node<MessageOptions>
     {
     }
 
-    public function getCode() : int
+    public function code() : int
     {
         return $this->code;
     }
 
-    public function getDescription() : string
+    public function description() : string
     {
         return $this->description;
     }
 
-    public function getPath() : Path
+    public function path() : string
     {
-        return $this->file->getPath();
+        return $this->file->path();
     }
 
-    public function getLineNumber() : LineNumber
+    public function lineNumber() : int
     {
-        return $this->file->getLineNumber();
+        return $this->file->lineNumber();
     }
 
-    public function getStartColumnNumber() : ColumnNumber
+    public function startColumnNumber() : int
     {
-        return $this->file->getStartColumnNumber();
+        return $this->file->startColumnNumber();
     }
 
-    public function getEndColumnNumber() : ColumnNumber
+    public function endColumnNumber() : int
     {
-        return $this->file->getEndColumnNumber();
+        return $this->file->endColumnNumber();
     }
 
-    public function getLineCode() : string
+    public function lineCode() : string
     {
-        return $this->file->getLineCode( $this->getLineNumber() );
+        return $this->file->lineCodeAt( $this->lineNumber() );
     }
 
-    public function getDetailCodes() : KeyedIterator<LineNumber, string>
+    public function detailCodes() : KeyedIterator<int, string>
     {
-        $lineAt = $this->getLineNumber();
+        $lineAt = $this->lineNumber();
 
         $startLineAt = $lineAt - 2;
         $startLineAt = ($startLineAt <= 0) ? 1 : $startLineAt;
 
         $endLineAt = $lineAt + 2;
-        $endLineAt = ($this->file->getTotalLineCount() <= $endLineAt)
-            ? $this->file->getTotalLineCount() : $endLineAt;
+        $endLineAt = ($this->file->totalLineCount() <= $endLineAt)
+            ? $this->file->totalLineCount() : $endLineAt;
 
         $range = IntegerRange::between(
             $startLineAt,
             $endLineAt
         );
 
-        return $this->file->getLineCodesByRange($range);
+        return $this->file->lineCodesByRange($range);
     }
 
     public static function fromOptions(MessageOptions $options) : this

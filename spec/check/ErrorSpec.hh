@@ -17,9 +17,9 @@ describe(Error::class, function() {
       )
     ));
   });
-  describe('#getMessages', function() {
+  describe('#messages', function() {
     it('return messages', function() {
-      $messages = $this->error->getMessages();
+      $messages = $this->error->messages();
       expect(count($messages))->toBe(1);
     });
   });

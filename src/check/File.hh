@@ -16,56 +16,56 @@ final class File
 
     public function __construct
     (
-        private Path $path,
+        private string $path,
         private FilePosition $position
     )
     {
     }
 
-    public function getPath() : Path
+    public function path() : string
     {
         return $this->path;
     }
 
-    public function getLineNumber() : LineNumber
+    public function lineNumber() : int
     {
-        return $this->position->getLineNumber();
+        return $this->position->lineNumber();
     }
 
-    public function getStartColumnNumber() : ColumnNumber
+    public function startColumnNumber() : int
     {
-        return $this->position->getStartColumnNumber();
+        return $this->position->startColumnNumber();
     }
 
-    public function getEndColumnNumber() : ColumnNumber
+    public function endColumnNumber() : int
     {
-        return $this->position->getEndColumnNumber();
+        return $this->position->endColumnNumber();
     }
 
-    public function getLineCode(LineNumber $lineAt) : string
+    public function lineCodeAt(int $lineAt) : string
     {
-        return $this->readContent()->getLineCode($lineAt);
+        return $this->readContent()->lineCodeAt($lineAt);
     }
 
-    public function getLineCodes() : KeyedIterator<LineNumber, string>
+    public function lineCodes() : KeyedIterator<int, string>
     {
-        return $this->readContent()->getLineCodes();
+        return $this->readContent()->lineCodes();
     }
 
-    public function getLineCodesByRange(LineRange $range) : KeyedIterator<LineNumber, string>
+    public function lineCodesByRange(LineRange $range) : KeyedIterator<int, string>
     {
-        return $this->readContent()->getLineCodesByRange($range);
+        return $this->readContent()->lineCodesByRange($range);
     }
 
-    public function getTotalLineCount() : int
+    public function totalLineCount() : int
     {
-        return $this->readContent()->getTotalLineCount();
+        return $this->readContent()->totalLineCount();
     }
 
     <<__Memoize>>
     private function readContent() : FileContent
     {
-        $content = file_get_contents($this->getPath());
+        $content = file_get_contents($this->path());
         return new FileContent($content);
     }
 

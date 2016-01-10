@@ -9,9 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker;
+namespace hhpack\typechecker\check;
 
-interface JSONResult<T>
+interface ResultNode
 {
-    public static function fromString(string $result) : this;
 }

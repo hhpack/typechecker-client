@@ -28,9 +28,9 @@ describe(Result::class, function() {
     $this->resultOptions = $resultOptions;
     $this->result = Result::fromOptions($resultOptions);
   });
-  describe('#getVersion', function() {
+  describe('#version', function() {
     it('return version text', function() {
-      expect($this->result->getVersion())->toBe("817b3a0 Nov 15 2014 13:25:51");
+      expect($this->result->version())->toBe("817b3a0 Nov 15 2014 13:25:51");
     });
   });
   describe('#isOk', function() {
@@ -49,9 +49,9 @@ describe(Result::class, function() {
       });
     });
   });
-  describe('#getErrors', function() {
+  describe('#errors', function() {
     it('return errors', function() {
-      $errors = $this->result->getErrors();
+      $errors = $this->result->errors();
       expect(count($errors))->toBe(1);
     });
   });
@@ -72,17 +72,4 @@ describe(Result::class, function() {
       });
     });
   });
-
-  describe('#fromString', function() {
-    beforeEach(function() {
-      $this->content = file_get_contents(__DIR__ . '/../fixtures/failed/output.json');
-      $this->content = str_replace('{$rootDirectory}', realpath(__DIR__ . '/../fixtures/failed') , $this->content);
-      $this->content = "Typechecking ....\n\n" .  $this->content . "\nDone\n";
-    });
-    it('return type checked result', function () {
-      $result = Result::fromString($this->content);
-      expect($result->getVersion())->toBe('817b3a0 Nov 15 2014 13:25:51');
-    });
-  });
-
 });

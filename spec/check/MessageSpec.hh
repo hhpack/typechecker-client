@@ -19,44 +19,44 @@ describe(Message::class, function() {
     );
     $this->message = Message::fromOptions($this->options);
   });
-  describe('#fromObject', function() {
+  describe('#fromOptions', function() {
     it('return Message instance', function() {
       $message = Message::fromOptions($this->options);
       expect($message)->toBeAnInstanceOf(Message::class);
     });
   });
-  describe('#getCode', function() {
+  describe('#code', function() {
     it('return code value', function() {
-      expect($this->message->getCode())->toBe(1002);
+      expect($this->message->code())->toBe(1002);
     });
   });
-  describe('#getDescription', function() {
+  describe('#description', function() {
     it('return description text', function() {
-      expect($this->message->getDescription())->toBe("Expected variable");
+      expect($this->message->description())->toBe("Expected variable");
     });
   });
-  describe('#getPath', function() {
+  describe('#path', function() {
     it('return file path', function() {
-      expect($this->message->getPath())->toBe($this->sourcePath);
+      expect($this->message->path())->toBe($this->sourcePath);
     });
   });
-  describe('#getLineNumber', function() {
+  describe('#lineNumber', function() {
     it('return line number', function() {
-      expect($this->message->getLineNumber())->toBe(6);
+      expect($this->message->lineNumber())->toBe(6);
     });
   });
-  describe('#getStartColumnNumber', function() {
+  describe('#startColumnNumber', function() {
     it('return start column number', function() {
-      expect($this->message->getStartColumnNumber())->toBe(35);
+      expect($this->message->startColumnNumber())->toBe(35);
     });
   });
-  describe('#getEndColumnNumber', function() {
+  describe('#endColumnNumber', function() {
     it('return end column number', function() {
-      expect($this->message->getEndColumnNumber())->toBe(35);
+      expect($this->message->endColumnNumber())->toBe(35);
     });
   });
 
-  describe('#getDetailCodes', function() {
+  describe('#detailCodes', function() {
     context('when greater then last line', function () {
       beforeEach(function() {
         $this->options = shape(
@@ -71,7 +71,7 @@ describe(Message::class, function() {
         $this->message = Message::fromOptions($this->options);
       });
       it('return detail code', function() {
-        $lines = $this->message->getDetailCodes();
+        $lines = $this->message->detailCodes();
 
         expect($lines->key())->toBe(7);
         expect($lines->current())->toBe('    {');
@@ -104,7 +104,7 @@ describe(Message::class, function() {
         $this->message = Message::fromOptions($this->options);
       });
       it('return detail code', function() {
-        $lines = $this->message->getDetailCodes();
+        $lines = $this->message->detailCodes();
 
         expect($lines->key())->toBe(1);
         expect($lines->current())->toBe('<?hh //strict');

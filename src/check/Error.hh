@@ -11,20 +11,19 @@
 
 namespace hhpack\typechecker\check;
 
-use hhpack\typechecker\Node;
-use \stdClass;
+use hhpack\typechecker\FromOptions;
 
-final class Error implements Node<ErrorOptions>
+final class Error implements ResultNode, FromOptions<ErrorOptions>
 {
 
-    private ImmutableMessages $messages;
+    private ImmVector<Message> $messages;
 
-    public function __construct(Messages $messages)
+    public function __construct(Traversable<Message> $messages)
     {
         $this->messages = new ImmVector($messages);
     }
 
-    public function getMessages() : KeyedIterator<int, Message>
+    public function messages() : KeyedIterator<int, Message>
     {
         return $this->messages->lazy()->getIterator();
     }

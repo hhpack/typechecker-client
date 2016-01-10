@@ -11,19 +11,19 @@
 
 namespace hhpack\typechecker\check;
 
-use hhpack\typechecker\Node;
 use hhpack\typechecker\JSONResult;
+use hhpack\typechecker\FromOptions;
 
-final class Result implements JSONResult<ResultOptions>, Node<ResultOptions>
+final class Result implements ResultNode, FromOptions<ResultOptions>
 {
 
-    private ImmutableErrors $errors;
+    private ImmVector<Error> $errors;
 
     public function __construct
     (
         private bool $passed,
-        private Version $version,
-        Errors $errors
+        private version $version,
+        Traversable<Error> $errors
     )
     {
         $this->errors = new ImmVector($errors);
@@ -39,17 +39,17 @@ final class Result implements JSONResult<ResultOptions>, Node<ResultOptions>
         return $this->isOk() === false;
     }
 
-    public function getVersion() : Version
+    public function version() : version
     {
         return $this->version;
     }
 
-    public function getErrors() : KeyedIterator<int, Error>
+    public function errors() : KeyedIterator<int, Error>
     {
         return $this->errors->lazy()->getIterator();
     }
 
-    public function getErrorCount() : int
+    public function errorCount() : int
     {
         return $this->errors->count();
     }
@@ -73,14 +73,6 @@ final class Result implements JSONResult<ResultOptions>, Node<ResultOptions>
             $options['version'],
             $errors->items()
         );
-    }
-
-    public static function fromString(string $result) : this
-    {
-        $json = preg_replace('/^([^\{]+)|([^\}]+)$/', "", $result);
-        $values = json_decode(trim($json), true);
-
-        return static::fromOptions($values);
     }
 
 }
