@@ -116,7 +116,6 @@ final class CoverageReportDecoder implements JSONDecoder<ResultNode>
                 continue;
             }
             $this->path->moveTo( $key );
-            $values['name'] = $key;
             $children->set($key, $this->decodeNode($values));
             $this->path->leave();
         }
