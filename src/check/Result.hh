@@ -60,14 +60,9 @@ final class Result implements ResultNode, FromOptions<ResultOptions>, Selectable
         return $this->errors->isEmpty() === false;
     }
 
-    public function filter((function(Error):bool) $selector) : Iterator<Error>
+    public function filter((function(Error):bool) $selector) : ImmVector<Error>
     {
-        foreach ($this->errors as $error) {
-            if (!$selector($error)) {
-                continue;
-            }
-            yield $error;
-        }
+        return ImmVector::fromItems($this->errors)->filter($selector);
     }
 
     public static function fromOptions(ResultOptions $options) : this

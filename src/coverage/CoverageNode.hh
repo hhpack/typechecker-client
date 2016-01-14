@@ -95,14 +95,9 @@ abstract class CoverageNode implements ResultNode
         }
     }
 
-    public function filter((function(ResultNode):bool) $selector) : Iterator<ResultNode>
+    public function filter((function(ResultNode):bool) $selector) : ImmVector<ResultNode>
     {
-        foreach ($this->items() as $item) {
-            if (!$selector($item)) {
-                continue;
-            }
-            yield $item;
-        }
+        return ImmVector::fromItems($this->items())->filter($selector);
     }
 
 }

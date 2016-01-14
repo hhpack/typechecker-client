@@ -13,5 +13,5 @@ namespace hhpack\typechecker;
 
 interface Selectable<T>
 {
-    public function filter((function(T):bool) $selector) : Iterator<T>;
+    public function filter((function(T):bool) $selector) : ImmVector<T>;
 }
