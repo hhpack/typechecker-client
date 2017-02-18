@@ -12,7 +12,7 @@ Basic usage
 Examples of the type of check will be as follows.
 
 ```hack
-use hhpack\typechecker\TypeCheckerClient;
+use HHPack\TypeChecker\TypeCheckerClient;
 
 $client = new TypeCheckerClient(getcwd());
 
@@ -33,8 +33,8 @@ Type of coverage
 Examples of the type of coverage will be as follows.
 
 ```hack
-use hhpack\typechecker\TypeCheckerClient;
-use hhpack\typechecker\coverage\File;
+use HHPack\TypeChecker\TypeCheckerClient;
+use HHPack\TypeChecker\Coverage\File;
 
 $client = new TypeCheckerClient(getcwd());
 await $client->restart();
