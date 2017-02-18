@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\check;
+namespace HHPack\TypeChecker\Check;
 
-use hhpack\typechecker\JSONDecoder;
+use HHPack\TypeChecker\JSONDecoder;
 use RuntimeException;
 
 final class TypeCheckReportDecoder implements JSONDecoder<Result>

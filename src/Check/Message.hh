@@ -9,10 +9,10 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\check;
+namespace HHPack\TypeChecker\Check;
 
-use hhpack\typechecker\range\IntegerRange;
-use hhpack\typechecker\FromOptions;
+use HHPack\TypeChecker\Range\IntegerRange;
+use HHPack\TypeChecker\FromOptions;
 
 final class Message implements ResultNode, FromOptions<MessageOptions>
 {

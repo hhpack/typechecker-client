@@ -1,12 +1,12 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec\coverage;
+namespace HHPack\TypeChecker\Spec\Coverage;
 
-use hhpack\typechecker\coverage\CoverageReportDecoder;
+use HHPack\TypeChecker\Coverage\CoverageReportDecoder;
 
 describe(CoverageReportDecoder::class, function() {
   beforeEach(function() {
-    $this->decoder = new CoverageReportDecoder();
+    $this->decoder = new CoverageReportDecoder(__DIR__);
   });
   describe('#decodeFile', function() {
     it('return decoded result', function() {

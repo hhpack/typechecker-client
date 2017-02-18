@@ -9,11 +9,11 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\check;
+namespace HHPack\TypeChecker\Check;
 
-use hhpack\typechecker\JSONResult;
-use hhpack\typechecker\Selectable;
-use hhpack\typechecker\FromOptions;
+use HHPack\TypeChecker\JSONResult;
+use HHPack\TypeChecker\Selectable;
+use HHPack\TypeChecker\FromOptions;
 
 final class Result implements ResultNode, FromOptions<ResultOptions>, Selectable<Error>
 {

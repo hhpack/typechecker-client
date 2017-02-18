@@ -9,15 +9,15 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker
+namespace HHPack\TypeChecker
 {
     type version = string;
     type configurationPath = string;
 }
 
-namespace hhpack\typechecker\check
+namespace HHPack\TypeChecker\Check
 {
-    use hhpack\typechecker\range\IntegerRange;
+    use HHPack\TypeChecker\Range\IntegerRange;
 
     type version = string;
     type LineRange = IntegerRange;
@@ -40,7 +40,7 @@ namespace hhpack\typechecker\check
     );
 }
 
-namespace hhpack\typechecker\coverage
+namespace HHPack\TypeChecker\Coverage
 {
     type FileOptions = shape(
         'name' => string,

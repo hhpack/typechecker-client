@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\coverage;
+namespace HHPack\TypeChecker\Coverage;
 
 final class Coverage
 {

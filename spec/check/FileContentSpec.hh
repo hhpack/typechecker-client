@@ -1,9 +1,9 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec\check;
+namespace HHPack\TypeChecker\Spec\Check;
 
-use hhpack\typechecker\range\IntegerRange;
-use hhpack\typechecker\check\FileContent;
+use HHPack\TypeChecker\Range\IntegerRange;
+use HHPack\TypeChecker\Check\FileContent;
 
 describe(FileContent::class, function() {
   beforeEach(function() {

@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\check;
+namespace HHPack\TypeChecker\Check;
 
-use hhpack\typechecker\FromOptions;
+use HHPack\TypeChecker\FromOptions;
 
 final class Error implements ResultNode, FromOptions<ErrorOptions>
 {

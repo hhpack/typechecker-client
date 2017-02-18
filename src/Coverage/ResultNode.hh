@@ -9,11 +9,11 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\coverage;
+namespace HHPack\TypeChecker\Coverage;
 
-use hhpack\typechecker\Visitor;
-use hhpack\typechecker\VisitorAcceptable;
-use hhpack\typechecker\Selectable;
+use HHPack\TypeChecker\Visitor;
+use HHPack\TypeChecker\VisitorAcceptable;
+use HHPack\TypeChecker\Selectable;
 
 interface ResultNode extends VisitorAcceptable<ResultNode>, Selectable<ResultNode>
 {

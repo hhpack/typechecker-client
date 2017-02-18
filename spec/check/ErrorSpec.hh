@@ -1,8 +1,8 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec\check;
+namespace HHPack\TypeChecker\Spec\Check;
 
-use hhpack\typechecker\check\Error;
+use HHPack\TypeChecker\Check\Error;
 
 describe(Error::class, function() {
   beforeEach(function() {

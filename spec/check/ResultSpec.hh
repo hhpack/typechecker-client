@@ -1,8 +1,8 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec\check;
+namespace HHPack\TypeChecker\Spec\Check;
 
-use hhpack\typechecker\check\Result;
+use HHPack\TypeChecker\Check\Result;
 
 describe(Result::class, function() {
   beforeEach(function() {

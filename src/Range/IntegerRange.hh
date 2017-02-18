@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\range;
+namespace HHPack\TypeChecker\Range;
 
-use hhpack\typechecker\Range;
+use HHPack\TypeChecker\Range;
 use UnexpectedValueException;
 
 final class IntegerRange implements Range<int>

@@ -11,7 +11,7 @@
   "license": "MIT",
   "require": {
     "hhvm": ">=3.11.0",
-    "hhpack/process": "~0.3"
+    "hhpack/process": "^1.0"
   },
   "require-dev": {
     "expect/peridot-expect-plugin": "~3.0",
@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "hhpack\\typechecker\\": "src/"
+      "HHPack\\TypeChecker\\": "src/"
     },
     "files": [
       "src/bootstrap.hh"

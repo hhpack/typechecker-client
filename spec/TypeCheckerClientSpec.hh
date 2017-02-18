@@ -1,12 +1,14 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec\check;
+namespace HHPack\TypeChecker\Spec\Check;
 
-use hhpack\typechecker\TypeCheckerClient;
+use HHPack\TypeChecker\TypeCheckerClient;
 
 describe(TypeCheckerClient::class, function() {
   beforeEach(function() {
-    unlink('/tmp/.hhconfig');
+    if (file_exists('/tmp/.hhconfig')) {
+      unlink('/tmp/.hhconfig');
+    }
     $this->checker = new TypeCheckerClient('/tmp');
   });
   describe('#init', function() {

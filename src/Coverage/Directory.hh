@@ -9,17 +9,18 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\coverage;
+namespace HHPack\TypeChecker\Coverage;
 
-use hhpack\typechecker\Visitor;
-use hhpack\typechecker\FromOptions;
+use HHPack\TypeChecker\Visitor;
+use HHPack\TypeChecker\FromOptions;
 
-final class File extends CoverageNode implements ResultNode, FromOptions<FileOptions>
+final class Directory extends CoverageNode implements ResultNode, FromOptions<DirectoryOptions>
 {
 
     public function __construct(
         string $name,
-        ImmMap<string, Coverage> $result
+        ImmMap<string, Coverage> $result,
+        private ImmMap<string, ResultNode> $children
     )
     {
         $this->name = $name;
@@ -34,19 +35,20 @@ final class File extends CoverageNode implements ResultNode, FromOptions<FileOpt
 
     public function hasChildren() : bool
     {
-        return false;
+        return $this->children->isEmpty() === false;
     }
 
     public function children() : ImmMap<string, ResultNode>
     {
-        return ImmMap {};
+        return $this->children;
     }
 
-    public static function fromOptions(FileOptions $options) : this
+    public static function fromOptions(DirectoryOptions $options) : this
     {
         return new static(
             $options['name'],
-            $options['result']
+            $options['result'],
+            $options['children']
         );
     }
 

@@ -9,14 +9,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker;
+namespace HHPack\TypeChecker;
 
-use hhpack\typechecker\check\Result;
-use hhpack\typechecker\check\TypeCheckReportDecoder;
-use hhpack\typechecker\coverage\ResultNode;
-use hhpack\typechecker\coverage\CoverageReportDecoder;
-use hhpack\process;
-use hhpack\process\ExecOptions;
+use HHPack\TypeChecker\Check\Result;
+use HHPack\TypeChecker\Check\TypeCheckReportDecoder;
+use HHPack\TypeChecker\Coverage\ResultNode;
+use HHPack\TypeChecker\Coverage\CoverageReportDecoder;
+use HHPack\Process;
+use HHPack\Process\ExecOptions;
 use RuntimeException;
 
 
@@ -35,7 +35,7 @@ final class TypeCheckerClient implements ClientBehavior
     {
         $options = new ExecOptions($this->cwd);
 
-        $result = await process\exec( $this->command('', [ '--version' ]), $options );
+        $result = await Process\exec( $this->command('', [ '--version' ]), $options );
         $version = (string) $result->stdout();
 
         return trim($version);
@@ -55,25 +55,25 @@ final class TypeCheckerClient implements ClientBehavior
     public async function start() : Awaitable<void>
     {
         $options = new ExecOptions($this->cwd);
-        await process\exec( $this->command('start'), $options );
+        await Process\exec( $this->command('start'), $options );
     }
 
     public async function stop() : Awaitable<void>
     {
         $options = new ExecOptions($this->cwd);
-        await process\exec( $this->command('stop'), $options );
+        await Process\exec( $this->command('stop'), $options );
     }
 
     public async function restart() : Awaitable<void>
     {
         $options = new ExecOptions($this->cwd);
-        await process\exec( $this->command('restart'), $options );
+        await Process\exec( $this->command('restart'), $options );
     }
 
     public async function check() : Awaitable<Result>
     {
         $options = new ExecOptions($this->cwd);
-        $result = await process\exec( $this->command('check', [ '--json' ]), $options);
+        $result = await Process\exec( $this->command('check', [ '--json' ]), $options);
 
         $decoder = new TypeCheckReportDecoder();
         return $decoder->decode((string) $result->stderr());
@@ -84,7 +84,7 @@ final class TypeCheckerClient implements ClientBehavior
         $options = new ExecOptions($this->cwd);
         $cmd = $this->command('check', [ '--json', '--coverage', $this->cwd ]);
 
-        $result = await process\exec($cmd, $options);
+        $result = await Process\exec($cmd, $options);
 
         $decoder = new CoverageReportDecoder($this->cwd);
         return $decoder->decode((string) $result->stdout());

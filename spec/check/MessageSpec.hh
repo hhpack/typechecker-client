@@ -1,9 +1,9 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec\check;
+namespace HHPack\TypeChecker\Spec\Check;
 
-use hhpack\typechecker\check\Message;
-use hhpack\typechecker\check\LineRange;
+use HHPack\TypeChecker\Check\Message;
+use HHPack\TypeChecker\Check\LineRange;
 
 describe(Message::class, function() {
   beforeEach(function() {

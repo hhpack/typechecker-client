@@ -9,10 +9,10 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker;
+namespace HHPack\TypeChecker;
 
-use hhpack\typechecker\check\Result;
-use hhpack\typechecker\coverage\ResultNode;
+use HHPack\TypeChecker\Check\Result;
+use HHPack\TypeChecker\Coverage\ResultNode;
 
 interface ClientBehavior
 {

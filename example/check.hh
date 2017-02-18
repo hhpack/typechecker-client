@@ -1,10 +1,10 @@
 <?hh // partial
 
-namespace hhpack\typechecker;
+namespace HHPack\TypeChecker;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use hhpack\typechecker\TypeCheckerClient;
+use HHPack\TypeChecker\TypeCheckerClient;
 
 async function check_main(string $cwd) : Awaitable<void>
 {

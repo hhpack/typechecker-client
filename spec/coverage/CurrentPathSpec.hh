@@ -1,8 +1,8 @@
 <?hh //partial
 
-namespace hhpack\typechecker\spec\coverage;
+namespace HHPack\TypeChecker\Spec\Coverage;
 
-use hhpack\typechecker\coverage\CurrentPath;
+use HHPack\TypeChecker\Coverage\CurrentPath;
 
 describe(CurrentPath::class, function() {
   beforeEach(function() {

@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\check;
+namespace HHPack\TypeChecker\Check;
 
-use hhpack\typechecker\range\IntegerRange;
+use HHPack\TypeChecker\Range\IntegerRange;
 
 final class FilePosition
 {

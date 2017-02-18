@@ -9,10 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\range;
+namespace HHPack\TypeChecker\Check;
 
-use UnexpectedValueException;
-
-final class LessThanException extends UnexpectedValueException
+interface ResultNode
 {
 }

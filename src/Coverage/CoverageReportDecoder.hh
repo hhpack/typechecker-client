@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace hhpack\typechecker\coverage;
+namespace HHPack\TypeChecker\Coverage;
 
-use hhpack\typechecker\JSONDecoder;
+use HHPack\TypeChecker\JSONDecoder;
 use RuntimeException;
 
 final class CoverageReportDecoder implements JSONDecoder<ResultNode>

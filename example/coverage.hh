@@ -1,12 +1,12 @@
 <?hh // partial
 
-namespace hhpack\typechecker;
+namespace HHPack\TypeChecker;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use hhpack\typechecker\Visitor;
-use hhpack\typechecker\TypeCheckerClient;
-use hhpack\typechecker\coverage\ResultNode;
+use HHPack\TypeChecker\Visitor;
+use HHPack\TypeChecker\TypeCheckerClient;
+use HHPack\TypeChecker\Coverage\ResultNode;
 
 async function coverage_main(string $cwd) : Awaitable<void>
 {
